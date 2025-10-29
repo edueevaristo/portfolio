@@ -245,15 +245,16 @@ body {
 .profile-avatar {
     width: 120px;
     height: 120px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 48px;
-    font-weight: 700;
+    overflow: hidden;
     margin: 0 auto 20px;
     box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .profile-status {
@@ -992,4 +993,30 @@ section {
 .scale-in.visible {
     opacity: 1;
     transform: scale(1);
+}
+
+/* Preloader Signature */
+
+
+.assinatura-grupo path {
+    /* Esconde o traço completamente no início */
+    stroke-dasharray: [COMPRIMENTO_DO_CAMINHO];
+    stroke-dashoffset: [COMPRIMENTO_DO_CAMINHO];
+
+    /* Aplica a animação */
+    animation: draw 4s ease-in-out forwards;
+}
+
+/* Para que as duas palavras não sejam animadas ao mesmo tempo,
+   você aplicaria um 'animation-delay' diferente para a segunda palavra.
+*/
+#caminho-evaristo { /* ID do path da segunda linha */
+    animation-delay: 0.5s;
+}
+
+@keyframes draw {
+    to {
+        /* Move o traço (stroke-dashoffset) para 0, revelando o caminho */
+        stroke-dashoffset: 0;
+    }
 }

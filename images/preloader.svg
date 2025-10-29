@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200">
+    <defs>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Ms+Madi&display=swap');
+        </style>
+    </defs>
+    <g class="assinatura-grupo" fill="none" stroke="#222" stroke-width="2" stroke-linecap="round">
+        <text id="nome1" x="20" y="85" font-family="Ms Madi, cursive" font-size="90" fill="#222">Eduardo</text>
+        <text id="nome2" x="80" y="165" font-family="Ms Madi, cursive" font-size="90" fill="#222">Evaristo</text>
+    </g>
+</svg>
