@@ -7,6 +7,7 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -15,6 +16,9 @@ body {
     color: #ffffff;
     overflow-x: hidden;
     line-height: 1.6;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -111,11 +115,12 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     background: radial-gradient(circle at 30% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 70% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
     pointer-events: none;
+    max-width: 100%;
 }
 
 .hero-container {
@@ -281,7 +286,7 @@ body {
 
 .scroll-indicator {
     position: absolute;
-    bottom: 30px;
+    bottom: 5px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -296,13 +301,22 @@ body {
     width: 2px;
     height: 30px;
     background: linear-gradient(to bottom, #667eea, transparent);
-    animation: scrollAnimation 2s infinite;
+    animation: scrollAnimation 2s infinite ease-in-out;
 }
 
 @keyframes scrollAnimation {
-    0% { opacity: 0; transform: translateY(-10px); }
-    50% { opacity: 1; }
-    100% { opacity: 0; transform: translateY(10px); }
+    0% { 
+        opacity: 0; 
+        transform: translateY(-5px); 
+    }
+    50% { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+    100% { 
+        opacity: 0; 
+        transform: translateY(5px); 
+    }
 }
 
 /* Section Styles */
@@ -826,6 +840,30 @@ section {
 }
 
 /* Responsive Design */
+@media (max-width: 1440px) {
+    .container {
+        max-width: 1100px;
+    }
+    
+    .hero-name {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+    }
+}
+
+@media (max-width: 1200px) {
+    .container {
+        max-width: 900px;
+    }
+    
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
 @media (max-width: 1024px) {
     .hero-container {
         grid-template-columns: 1fr;
@@ -836,6 +874,7 @@ section {
     .about-content {
         grid-template-columns: 1fr;
         gap: 40px;
+        text-align: center;
     }
     
     .contact-content {
@@ -846,6 +885,15 @@ section {
     .skills-content {
         grid-template-columns: 1fr;
     }
+    
+    .hero-name {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+    
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -855,7 +903,7 @@ section {
         left: -100%;
         width: 100%;
         height: calc(100vh - 70px);
-        background: rgba(15, 15, 15, 0.95);
+        background: rgba(15, 15, 15, 0.98);
         backdrop-filter: blur(10px);
         flex-direction: column;
         justify-content: center;
@@ -888,15 +936,22 @@ section {
         flex-direction: column;
         text-align: center;
         gap: 20px;
+        margin-bottom: 40px;
+    }
+    
+    .section-title {
+        font-size: clamp(2rem, 5vw, 3rem);
     }
     
     .hero-buttons {
         justify-content: center;
+        gap: 15px;
     }
     
     .about-stats {
         flex-direction: row;
         justify-content: center;
+        gap: 20px;
     }
     
     .footer-content {
@@ -905,48 +960,240 @@ section {
         text-align: center;
     }
     
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
     section {
         padding: 60px 0;
     }
+    
+    .hero {
+        min-height: 90vh;
+        padding: 80px 0 40px;
+    }
+    
+    .profile-avatar {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .hero-description {
+        font-size: 16px;
+    }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
     .container {
         padding: 0 15px;
     }
     
     .nav-container {
         padding: 0 15px;
+        height: 60px;
     }
     
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
+    .nav-menu {
+        top: 60px;
+        height: calc(100vh - 60px);
     }
     
-    .btn {
-        width: 100%;
-        max-width: 250px;
-        text-align: center;
+    .hero {
+        padding-top: 70px;
     }
     
-    .projects-grid {
-        grid-template-columns: 1fr;
+    .hero-name {
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
     }
     
-    .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .hero-title {
+        font-size: clamp(1.2rem, 4vw, 1.8rem);
     }
     
     .about-stats {
         flex-direction: column;
+        gap: 15px;
+    }
+    
+    .stat-item {
+        padding: 20px;
+    }
+    
+    .stat-number {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+        padding: 12px 25px;
+        font-size: 15px;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .skill-item {
+        padding: 20px 15px;
+    }
+    
+    .skill-item i {
+        font-size: 28px;
+    }
+    
+    .project-info {
+        padding: 20px;
+    }
+    
+    .project-info h3 {
+        font-size: 20px;
+    }
+    
+    .contact-methods {
+        gap: 15px;
+    }
+    
+    .contact-method {
+        font-size: 14px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 12px 15px;
+        font-size: 15px;
     }
     
     .back-to-top {
-        bottom: 20px;
-        right: 20px;
-        width: 45px;
-        height: 45px;
+        bottom: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .profile-card {
+        padding: 30px 20px;
+    }
+    
+    section {
+        padding: 50px 0;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 0 12px;
+    }
+    
+    .nav-container {
+        padding: 0 12px;
+    }
+    
+    .hero-name {
+        font-size: clamp(1.5rem, 10vw, 2rem);
+    }
+    
+    .hero-description {
+        font-size: 14px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .section-number {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+    
+    .skill-item {
+        padding: 15px 10px;
+    }
+    
+    .project-info {
+        padding: 15px;
+    }
+    
+    .contact-form {
+        padding: 25px 15px;
+    }
+    
+    .profile-avatar {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+/* Landscape orientation for mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+        padding: 60px 0 20px;
+    }
+    
+    .hero-container {
+        gap: 20px;
+    }
+    
+    .profile-card {
+        padding: 20px;
+    }
+    
+    .profile-avatar {
+        width: 60px;
+        height: 60px;
+    }
+    
+    section {
+        padding: 40px 0;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .profile-avatar img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Tablet landscape */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .hero-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        text-align: left;
+    }
+    
+    .about-content {
+        grid-template-columns: 2fr 1fr;
+    }
+    
+    .skills-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
     }
 }
 
@@ -993,6 +1240,22 @@ section {
 .scale-in.visible {
     opacity: 1;
     transform: scale(1);
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .fade-in,
+    .slide-in-left,
+    .slide-in-right,
+    .scale-in {
+        transition: none;
+    }
+    
+    .hero-name,
+    .typing-text,
+    .scroll-line {
+        animation: none;
+    }
 }
 
 /* Preloader Signature */
