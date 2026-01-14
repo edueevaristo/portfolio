@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f7b9be97-906e-439c-a426-ec8e896bef6e" name="FTP - Eduardo Evaristo (Portfólio) - PROD" url="http://82.112.247.172">
+        <fileTransfer rootFolder="/public_html" host="82.112.247.172" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
