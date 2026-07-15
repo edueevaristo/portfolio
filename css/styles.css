@@ -1481,3 +1481,795 @@ body {
         margin-left: 0;
     }
 }
+
+
+/* ============================================================
+   CONVERSION SECTIONS — Hero upgrade, Services (R$500), E-book,
+   WhatsApp CTAs. Matches the existing dark/blue design system.
+   ============================================================ */
+
+/* --- Nav highlight for E-book link --- */
+.nav-link-highlight {
+    color: var(--accent-cyan);
+}
+.nav-link-highlight::before {
+    content: '';
+    position: absolute;
+    inset: -6px -12px;
+    border-radius: 100px;
+    background: rgba(0, 210, 255, 0.06);
+    border: 1px solid rgba(0, 210, 255, 0.25);
+    z-index: -1;
+    transition: var(--transition-fast);
+}
+.nav-link-highlight:hover::before {
+    background: rgba(0, 210, 255, 0.12);
+    border-color: rgba(0, 210, 255, 0.45);
+}
+
+/* --- Hero subtitle + stats --- */
+.hero-subtitle {
+    font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    max-width: 620px;
+    margin: 4px 0 0;
+    letter-spacing: -0.3px;
+    pointer-events: all;
+    background: linear-gradient(90deg, #ffffff 0%, var(--accent-cyan) 120%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-description strong {
+    color: var(--accent-cyan);
+    font-weight: 800;
+}
+
+.hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 36px;
+    pointer-events: all;
+    flex-wrap: wrap;
+}
+
+.hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.hero-stat-num {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--text-primary);
+    letter-spacing: -1px;
+    text-shadow: 0 0 24px rgba(0, 210, 255, 0.25);
+}
+
+.hero-stat-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-secondary);
+}
+
+.hero-stat-divider {
+    width: 1px;
+    height: 38px;
+    background: linear-gradient(180deg, transparent, rgba(0, 85, 255, 0.4), transparent);
+}
+
+/* --- WhatsApp button (shared) --- */
+.btn-whatsapp {
+    gap: 10px;
+    background: linear-gradient(135deg, #25d366 0%, #1ebe5d 100%);
+    color: #04120a;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.btn-whatsapp:hover {
+    color: #04120a;
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(37, 211, 102, 0.45);
+}
+.btn-whatsapp i {
+    font-size: 18px;
+}
+
+/* ============================================================
+   SERVICES SECTION — Sites por R$500
+   ============================================================ */
+.services {
+    padding: 130px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+    position: relative;
+}
+
+/* Niche band — target audiences */
+.niche-band {
+    text-align: center;
+    margin-bottom: 72px;
+}
+
+.niche-band-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.niche-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+.niche-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 148px;
+    padding: 24px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    transition: var(--transition-smooth);
+}
+
+.niche-card i {
+    font-size: 26px;
+    color: var(--accent-cyan);
+    transition: var(--transition-smooth);
+}
+
+.niche-card span {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.niche-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0, 85, 255, 0.4);
+    background: var(--bg-card-hover);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 24px rgba(0, 85, 255, 0.1);
+}
+
+.niche-card:hover i {
+    transform: scale(1.12);
+    color: var(--accent-blue);
+    filter: drop-shadow(0 0 10px rgba(0, 85, 255, 0.5));
+}
+
+.niche-card-more {
+    background: rgba(0, 85, 255, 0.04);
+    border-style: dashed;
+    border-color: rgba(0, 85, 255, 0.25);
+}
+
+.niche-card-more i,
+.niche-card-more span {
+    color: var(--text-secondary);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+}
+
+.services-heading {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+}
+
+.services-text {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 28px;
+}
+
+.feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 15px;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.feature-list li i {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--accent-cyan);
+    background: rgba(0, 210, 255, 0.08);
+    border: 1px solid rgba(0, 210, 255, 0.25);
+    margin-top: 2px;
+}
+
+.services-tech-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+}
+
+/* Pricing card */
+.pricing-card {
+    position: relative;
+    background: linear-gradient(160deg, var(--bg-card-hover) 0%, var(--bg-card) 60%);
+    border: 1px solid rgba(0, 85, 255, 0.3);
+    border-radius: 28px;
+    padding: 44px 36px 36px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 85, 255, 0.08);
+    overflow: hidden;
+}
+
+.pricing-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 85, 255, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.pricing-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    color: #04120a;
+    background: linear-gradient(135deg, var(--accent-cyan), #67e8f9);
+    padding: 6px 14px;
+    border-radius: 100px;
+    box-shadow: 0 8px 20px rgba(0, 210, 255, 0.3);
+}
+
+.pricing-plan {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.pricing-price {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 6px;
+}
+
+.pricing-currency {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-top: 10px;
+}
+
+.pricing-value {
+    font-size: clamp(3.5rem, 8vw, 5rem);
+    font-weight: 900;
+    line-height: 1;
+    color: var(--text-primary);
+    letter-spacing: -3px;
+    background: linear-gradient(180deg, #ffffff 40%, var(--accent-blue) 130%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.pricing-note {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-cyan);
+    margin-bottom: 28px;
+}
+
+.pricing-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.pricing-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.pricing-list li i {
+    color: var(--accent-cyan);
+    font-size: 13px;
+}
+
+.pricing-cta {
+    width: 100%;
+    white-space: nowrap;
+    letter-spacing: 1px;
+}
+
+.pricing-disclaimer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 18px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.4;
+}
+
+.pricing-disclaimer i {
+    color: var(--text-secondary);
+}
+
+/* ============================================================
+   E-BOOK SECTION — Hotmart R$49,90
+   ============================================================ */
+.ebook {
+    padding: 130px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+    position: relative;
+    overflow: hidden;
+}
+
+.ebook::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translateY(-50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 85, 255, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.ebook-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 72px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* 3D book mockup */
+.ebook-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1600px;
+}
+
+.book-3d {
+    transform: rotateY(-22deg) rotateX(6deg);
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: bookFloat 5s ease-in-out infinite;
+}
+
+.book-3d:hover {
+    transform: rotateY(-8deg) rotateX(2deg);
+}
+
+@keyframes bookFloat {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -14px; }
+}
+
+.book-cover {
+    position: relative;
+    width: 280px;
+    height: 390px;
+    border-radius: 6px 12px 12px 6px;
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    background:
+        linear-gradient(135deg, #0b1e4d 0%, #041233 55%, #020617 100%);
+    border: 1px solid rgba(0, 210, 255, 0.2);
+    box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.6),
+        -14px 0 24px rgba(0, 0, 0, 0.4),
+        inset 8px 0 12px rgba(0, 0, 0, 0.5),
+        0 0 60px rgba(0, 85, 255, 0.15);
+    overflow: hidden;
+}
+
+/* spine */
+.book-cover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.55), rgba(0,0,0,0.05));
+}
+
+.book-tag {
+    align-self: flex-start;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: var(--accent-cyan);
+    border: 1px solid rgba(0, 210, 255, 0.35);
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: auto;
+    background: rgba(0, 210, 255, 0.05);
+}
+
+.book-title {
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.book-author {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+}
+
+.book-shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.08) 48%, transparent 56%);
+    pointer-events: none;
+}
+
+/* E-book content */
+.ebook-headline {
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+    margin: 20px 0 18px;
+}
+
+.ebook-desc {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 28px;
+    max-width: 560px;
+}
+
+.ebook-benefits {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 36px;
+}
+
+.ebook-benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 15px;
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.ebook-benefits li i {
+    color: var(--accent-cyan);
+    font-size: 18px;
+    margin-top: 1px;
+    flex-shrink: 0;
+}
+
+.ebook-purchase {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 22px;
+    padding: 24px 28px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.ebook-price-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.ebook-price-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.ebook-price {
+    display: flex;
+    align-items: flex-start;
+    gap: 3px;
+    margin: 2px 0;
+}
+
+.ebook-currency {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-top: 6px;
+}
+
+.ebook-value {
+    font-size: clamp(2.6rem, 6vw, 3.4rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: var(--text-primary);
+    background: linear-gradient(180deg, #ffffff 40%, var(--accent-cyan) 140%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.ebook-installment {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.ebook-cta {
+    gap: 10px;
+    flex: 1;
+    min-width: 240px;
+    white-space: nowrap;
+    letter-spacing: 1px;
+}
+
+.ebook-cta i {
+    font-size: 16px;
+}
+
+.ebook-guarantee {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.ebook-guarantee i {
+    color: #00ff88;
+    font-size: 16px;
+}
+
+/* --- Contact WhatsApp button --- */
+.contact-whatsapp-btn {
+    margin-bottom: 36px;
+}
+
+/* ============================================================
+   FLOATING WHATSAPP BUTTON
+   ============================================================ */
+.whatsapp-float {
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    border-radius: 100px;
+    background: linear-gradient(135deg, #25d366 0%, #1ebe5d 100%);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 15px;
+    white-space: nowrap;
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    overflow: hidden;
+}
+
+.whatsapp-float i {
+    font-size: 30px;
+    width: 60px;
+    text-align: center;
+    flex-shrink: 0;
+    transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whatsapp-float-text {
+    opacity: 0;
+    padding-right: 22px;
+    transition: opacity 0.4s ease;
+}
+
+.whatsapp-float::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 100px;
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    animation: wppPulse 2.4s infinite;
+}
+
+@keyframes wppPulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+    70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.whatsapp-float:hover {
+    width: 210px;
+    box-shadow: 0 16px 40px rgba(37, 211, 102, 0.55);
+}
+
+.whatsapp-float:hover i {
+    width: 52px;
+}
+
+.whatsapp-float:hover .whatsapp-float-text {
+    opacity: 1;
+}
+
+/* ============================================================
+   RESPONSIVE — conversion sections
+   ============================================================ */
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+    .pricing-card {
+        max-width: 520px;
+    }
+    .ebook-grid {
+        grid-template-columns: 1fr;
+        gap: 56px;
+        justify-items: center;
+        text-align: center;
+    }
+    .ebook-desc {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .ebook-benefits {
+        display: inline-flex;
+        text-align: left;
+    }
+    .ebook-purchase {
+        justify-content: center;
+    }
+    .ebook-guarantee {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .services, .ebook {
+        padding: 90px 0;
+    }
+    .hero-stats {
+        gap: 18px;
+    }
+    .book-cover {
+        width: 240px;
+        height: 340px;
+    }
+    .book-title {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-stat-divider {
+        display: none;
+    }
+    .hero-stats {
+        gap: 24px;
+    }
+    .pricing-card {
+        padding: 40px 24px 28px;
+    }
+    .ebook-purchase {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+    .ebook-price-box {
+        align-items: center;
+    }
+    .ebook-cta {
+        width: 100%;
+    }
+    .whatsapp-float-text {
+        display: none;
+    }
+    .whatsapp-float, .whatsapp-float:hover {
+        width: 60px;
+    }
+    .whatsapp-float:hover i {
+        width: 60px;
+    }
+    .book-cover {
+        width: 210px;
+        height: 300px;
+        padding: 28px 22px;
+    }
+    .book-title {
+        font-size: 23px;
+    }
+    .niche-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .niche-card {
+        width: 100%;
+        padding: 20px 12px;
+    }
+}
