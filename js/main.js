@@ -14,12 +14,21 @@ CustomEase.create('premium', 'M0,0 C0.16,1 0.3,1 1,1');
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const precisePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+const lowPowerDevice = Boolean(
+  connection?.saveData ||
+  connection?.effectiveType === 'slow-2g' ||
+  connection?.effectiveType === '2g' ||
+  (navigator.deviceMemory && navigator.deviceMemory < 4) ||
+  (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4),
+);
 const shell = document.querySelector('.section-shell');
 let lenis = null;
 let menuIsOpen = false;
 
 function initSmoothScroll() {
-  if (reduceMotion) return;
+  // Native scrolling is lighter and more reliable on constrained devices.
+  if (reduceMotion || lowPowerDevice) return;
 
   lenis = new Lenis({
     lerp: 0.085,
@@ -335,8 +344,11 @@ function initContactMotion() {
 function initForm() {
   const form = document.querySelector('#contact-form');
   const status = form.querySelector('.form-status');
+  const button = form.querySelector('.submit-button');
+  const buttonLabel = button.querySelector('span');
+  const defaultButtonLabel = buttonLabel.textContent;
 
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const fields = [...form.querySelectorAll('[required]')];
     let firstInvalid = null;
@@ -349,16 +361,50 @@ function initForm() {
 
     if (firstInvalid) {
       status.textContent = 'Revise os campos indicados antes de continuar.';
+      status.className = 'form-status is-error';
       firstInvalid.focus();
       gsap.fromTo(form, { x: -6 }, { x: 6, repeat: 3, yoyo: true, duration: 0.07, clearProps: 'x' });
       return;
     }
 
     const data = new FormData(form);
-    const subject = encodeURIComponent(`Novo projeto: ${data.get('project-type')}`);
-    const body = encodeURIComponent(`Nome: ${data.get('name')}\nEmail: ${data.get('email')}\nTipo: ${data.get('project-type')}\n\nContexto:\n${data.get('message')}`);
-    status.textContent = 'Mensagem preparada. Abrindo seu aplicativo de e-mail…';
-    window.location.href = `mailto:contato@eduardoevaristo.com.br?subject=${subject}&body=${body}`;
+    const payload = {
+      name: data.get('name'),
+      email: data.get('email'),
+      projectType: data.get('project-type'),
+      message: data.get('message'),
+      website: data.get('website'),
+    };
+
+    button.disabled = true;
+    button.classList.add('is-loading');
+    buttonLabel.textContent = 'Enviando';
+    status.textContent = 'Enviando sua mensagem com segurança.';
+    status.className = 'form-status';
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || 'Não foi possível enviar a mensagem.');
+      }
+
+      form.reset();
+      status.textContent = result.message;
+      status.className = 'form-status is-success';
+    } catch (error) {
+      status.textContent = error.message || 'Não foi possível enviar agora. Tente novamente.';
+      status.className = 'form-status is-error';
+    } finally {
+      button.disabled = false;
+      button.classList.remove('is-loading');
+      buttonLabel.textContent = defaultButtonLabel;
+    }
   });
 
   form.addEventListener('input', (event) => event.target.closest('.field')?.classList.remove('is-invalid'));
@@ -378,7 +424,6 @@ function initPageTransitions() {
 }
 
 function initThreeScene() {
-  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   const lowPower = reduceMotion || window.innerWidth < 760 || connection?.saveData || (navigator.deviceMemory && navigator.deviceMemory < 4);
   if (lowPower) return;
 
@@ -418,4 +463,9 @@ async function bootstrap() {
   ScrollTrigger.refresh();
 }
 
-bootstrap();
+// A failed/slow enhancement must never leave the page covered by the loader.
+window.setTimeout(() => document.querySelector('.loader')?.remove(), 2900);
+bootstrap().catch(() => {
+  document.querySelector('.loader')?.remove();
+  document.documentElement.classList.add('motion-fallback');
+});

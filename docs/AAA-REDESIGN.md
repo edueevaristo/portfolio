@@ -28,7 +28,7 @@
 
 O conceito troca “tecnologia decorativa” por engenharia visível. A identidade usa preto mineral, branco quente e verde-sinal. O verde não é ornamento: ele marca disponibilidade, direção, foco e estado ativo.
 
-A hierarquia combina tipografia de escala editorial com interfaces compactas de produto. A frase “Engenharia que se sente” condensa o posicionamento: rigor técnico por dentro e percepção de qualidade por fora.
+A hierarquia combina tipografia de escala editorial com interfaces compactas de produto. A frase “Do sistema à experiência” condensa o posicionamento: integrações e arquitetura sólidas por dentro, clareza e percepção de qualidade por fora.
 
 Princípios:
 

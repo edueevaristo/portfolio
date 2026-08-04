@@ -6,7 +6,7 @@
       <paths name="FTP - Eduardo Evaristo (Portfólio) - PROD">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/dist" web="/" />
           </mappings>
         </serverdata>
       </paths>
