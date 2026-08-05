@@ -232,7 +232,7 @@ function initSectionMotion() {
     scrollTrigger: { trigger: '.manifesto-grid', start: 'top bottom', end: 'bottom top', scrub: true },
   });
 
-  document.querySelectorAll('.project-media').forEach((media) => {
+  document.querySelectorAll('.project-media:not(.project-media-contain)').forEach((media) => {
     gsap.to(media.querySelector('img'), {
       yPercent: 7,
       ease: 'none',

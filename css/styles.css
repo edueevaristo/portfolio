@@ -405,6 +405,11 @@ h1, h2, h3, p { margin: 0; }
   .footer-bottom span:nth-child(2) { display:none; }
 }
 
+.project-media-giovanna {
+  aspect-ratio: 1435 / 906;
+  background: #f4f0e8;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior:smooth; }
   *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; transition-duration:.01ms !important; }
