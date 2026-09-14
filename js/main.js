@@ -217,19 +217,13 @@ function initSectionMotion() {
       clipPath: 'inset(0 0 0% 0)', duration: 1.25, ease: 'premium',
       scrollTrigger: { trigger: frame, start: 'top 86%', once: true },
     });
-    if (image) gsap.from(image, { scale: 1.16, duration: 1.5, ease: 'premium', scrollTrigger: { trigger: frame, start: 'top 86%', once: true } });
+    if (image && !frame.matches('.portrait-frame, .project-media-contain')) gsap.from(image, { scale: 1.16, duration: 1.5, ease: 'premium', scrollTrigger: { trigger: frame, start: 'top 86%', once: true } });
   });
 
   ScrollTrigger.batch('.project-meta, .principles article, .timeline article', {
     start: 'top 88%',
     once: true,
     onEnter: (batch) => gsap.from(batch, { y: 45, autoAlpha: 0, stagger: 0.09, duration: 0.85, ease: 'premium' }),
-  });
-
-  gsap.to('.portrait-frame img', {
-    yPercent: 9,
-    ease: 'none',
-    scrollTrigger: { trigger: '.manifesto-grid', start: 'top bottom', end: 'bottom top', scrub: true },
   });
 
   document.querySelectorAll('.project-media:not(.project-media-contain)').forEach((media) => {
@@ -424,7 +418,7 @@ function initPageTransitions() {
 }
 
 function initThreeScene() {
-  const lowPower = reduceMotion || window.innerWidth < 760 || connection?.saveData || (navigator.deviceMemory && navigator.deviceMemory < 4);
+  const lowPower = reduceMotion || lowPowerDevice || window.innerWidth < 760;
   if (lowPower) return;
 
   let started = false;
@@ -441,7 +435,7 @@ function initThreeScene() {
   window.addEventListener('pointermove', start, { once: true, passive: true });
   window.addEventListener('wheel', start, { once: true, passive: true });
   window.addEventListener('touchstart', start, { once: true, passive: true });
-  window.setTimeout(start, 7000);
+  window.setTimeout(start, 800);
 }
 
 async function bootstrap() {

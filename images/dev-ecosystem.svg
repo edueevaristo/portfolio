@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="700" viewBox="0 0 800 700">
+ <defs>
+  <linearGradient id="base" x2="0.7" y2="1"><stop stop-color="#677620"/><stop offset="1" stop-color="#202819"/></linearGradient>
+  <linearGradient id="edge" x2="1" y2="1"><stop stop-color="#dfff00"/><stop offset="1" stop-color="#6e8515"/></linearGradient>
+  <linearGradient id="glass" x2="0.4" y2="1"><stop stop-color="#35442c"/><stop offset="1" stop-color="#121a12"/></linearGradient>
+ </defs>
+ <ellipse cx="410" cy="575" rx="295" ry="65" fill="#dfff00" opacity=".035"/>
+ <path d="M90 478 387 342 714 478 423 630Z" fill="#101810" stroke="#576729"/>
+ <path d="M90 478v24l333 150 291-149v-25L423 630Z" fill="url(#base)"/>
+ <g stroke="#b2cb22" stroke-width="3" fill="none"><path d="m200 482 93 47 102-48 88 39 129-67"/><path d="m395 481 0-60"/></g>
+ <g transform="translate(210 158) skewY(7)">
+  <rect x="-10" y="-10" width="326" height="236" rx="20" fill="url(#edge)"/>
+  <rect width="300" height="210" rx="13" fill="url(#glass)" stroke="#6c8040"/>
+  <path d="M0 35H300" stroke="#6c8040"/><g fill="#dfff00"><circle cx="18" cy="18" r="4"/><circle cx="32" cy="18" r="4"/><circle cx="46" cy="18" r="4"/></g>
+  <text x="22" y="85" fill="#dfff00" font-family="monospace" font-size="24">&lt; hello, world /&gt;</text>
+  <g stroke-width="5" stroke-linecap="round"><path d="M24 113h48m15 0h100M40 135h92m15 0h100M40 156h62m15 0h85M24 177h62" stroke="#93a86a"/><path d="M24 113h48M40 156h62" stroke="#dfff00"/></g>
+  <path d="M126 226v45h55v-45" fill="url(#base)"/><path d="m89 272 118 0 25 19H64Z" fill="url(#edge)"/>
+ </g>
+ <g transform="translate(110 386)"><rect width="104" height="113" fill="url(#base)"/><ellipse cx="52" cy="113" rx="52" ry="20" fill="#687e1b"/><ellipse cx="52" cy="0" rx="52" ry="20" fill="url(#edge)"/><path d="M0 34c0 27 104 27 104 0M0 70c0 27 104 27 104 0" fill="none" stroke="#c1d947" stroke-width="3"/><text x="23" y="61" fill="#eef1d6" font-family="monospace" font-size="18">DATA</text></g>
+ <g transform="translate(557 255) skewY(-10)"><rect width="130" height="150" rx="13" fill="url(#base)" stroke="#879d37"/><text x="15" y="32" fill="#dfff00" font-family="monospace" font-size="17">METRICS</text><path d="M18 113h94M18 65h94M18 89h94" stroke="#43582d"/><path d="m18 111 22-25 17 11 20-40 20 12 17-28" fill="none" stroke="#dfff00" stroke-width="4"/></g>
+ <g transform="translate(506 454) skewY(-10)"><rect width="115" height="63" rx="10" fill="url(#edge)"/><text x="25" y="40" font-family="monospace" font-size="26" fill="#1c2812">API</text></g>
+ <g fill="#dfff00"><circle cx="293" cy="529" r="6"/><circle cx="395" cy="481" r="6"/><circle cx="483" cy="520" r="6"/></g>
+ <g font-family="monospace" font-size="14" letter-spacing="3" fill="#929d75"><text x="258" y="99">IDEAS → CODE → BUILD</text><text x="311" y="680">CONNECTED BY CODE</text></g>
+</svg>
