@@ -1,116 +1,79 @@
 import * as THREE from 'three';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { createTreePaths } from './tree-paths.js';
 
-// Real-time workstation, built locally without downloaded models or textures.
 export function mountHeroScene(canvas) {
   if (!canvas) return;
   const host = canvas.parentElement;
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 40);
-  camera.position.set(7, 5.6, 10);
-  camera.lookAt(0, 0.7, 0);
+  const camera = new THREE.PerspectiveCamera(38, 1, .1, 40);
+  camera.position.set(0, .3, 12.8);
+  camera.lookAt(0, .1, 0);
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'low-power' });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.15;
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  const room = new RoomEnvironment();
-  const environment = pmrem.fromScene(room, 0.04);
-  scene.environment = environment.texture;
-  room.dispose(); pmrem.dispose();
-  const green = new THREE.MeshStandardMaterial({ color: 0xbad526, metalness: 0.45, roughness: 0.28 });
-  const graphite = new THREE.MeshStandardMaterial({ color: 0x252e24, metalness: 0.45, roughness: 0.34 });
-  const olive = new THREE.MeshStandardMaterial({ color: 0x52612a, metalness: 0.35, roughness: 0.4 });
-  const signal = new THREE.MeshStandardMaterial({ color: 0xdfff00, emissive: 0xc0dc00, emissiveIntensity: 0.4, roughness: 0.3 });
-  const world = new THREE.Group(); scene.add(world);
-  const box = (w, h, d, material, x, y, z, parent = world) => {
-    const mesh = new THREE.Mesh(new RoundedBoxGeometry(w, h, d, 2, Math.min(w,h,d) * 0.17), material);
-    mesh.position.set(x, y, z); parent.add(mesh); return mesh;
-  };
-  box(6.4, 0.23, 4.8, graphite, 0, -0.55, 0);
-  box(6.15, 0.05, 4.55, olive, 0, -0.41, 0);
-
-  function screenTexture(type) {
-    const surface = document.createElement('canvas'); surface.width = 768; surface.height = 512;
-    const ctx = surface.getContext('2d');
-    ctx.fillStyle = '#111910'; ctx.fillRect(0, 0, 768, 512);
-    ctx.fillStyle = '#263120'; ctx.fillRect(0, 0, 768, 60);
-    for (let n=0; n<3; n++) { ctx.beginPath(); ctx.arc(28+n*26,30,6,0,Math.PI*2); ctx.fillStyle=n===0?'#dfff00':'#687651'; ctx.fill(); }
-    ctx.font='22px monospace'; ctx.fillStyle='#bbc5a4'; ctx.fillText(type === 'code' ? 'eduardo / workspace' : 'observability / metrics',140,38);
-    if (type === 'code') {
-      ctx.font='bold 48px monospace'; ctx.fillStyle='#dfff00'; ctx.fillText('< hello, world />',48,146);
-      const lines = ['const developer = {', '  name: "Eduardo",', '  stack: ["PHP", "Vue", "React"],', '  passion: "building things"', '};', 'connect(ideas, people, code);'];
-      ctx.font='25px monospace';
-      lines.forEach((line,i)=>{ctx.fillStyle=i===5?'#dfff00':'#c7cfb5';ctx.fillText(line,48,214+i*44);});
-    } else {
-      ctx.font='bold 28px monospace'; ctx.fillStyle='#dfff00'; ctx.fillText('SYSTEM PULSE',40,122);
-      ctx.strokeStyle='#354329';ctx.lineWidth=2;
-      for(let y=180;y<460;y+=65){ctx.beginPath();ctx.moveTo(40,y);ctx.lineTo(724,y);ctx.stroke();}
-      ctx.strokeStyle='#dfff00';ctx.lineWidth=7;ctx.beginPath();
-      [360,344,365,288,315,220,235,164,184,135].forEach((y,i)=> i ? ctx.lineTo(48+i*73,y) : ctx.moveTo(48,y));ctx.stroke();
-      ctx.font='22px monospace';ctx.fillStyle='#c7cfb5';ctx.fillText('logs   /   traces   /   metrics',40,477);
-    }
-    const texture = new THREE.CanvasTexture(surface); texture.colorSpace = THREE.SRGBColorSpace;
-    texture.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());
-    return new THREE.MeshBasicMaterial({ map: texture });
-  }
-  const terminal = new THREE.Group(); world.add(terminal); terminal.position.set(-0.4, 1.5, -0.65);
-  box(3.45,2.35,0.24,green,0,0,0,terminal);
-  const code = new THREE.Mesh(new THREE.PlaneGeometry(3.19,2.12),screenTexture('code'));
-  code.position.z=0.135;terminal.add(code);
-  box(0.24,0.83,0.25,olive,-0.4,0.1,-0.65); box(1.3,0.12,0.8,green,-0.4,-0.26,-0.55);
-  box(2.6,0.12,0.85,graphite,-0.35,-0.26,1.03);
-  for(let row=0;row<3;row++) for(let col=0;col<10;col++) box(0.18,0.04,0.16,(col+row)%7===0?signal:olive,-1.43+col*0.24,-0.175,0.78+row*0.24);
-  const database = new THREE.Group(); database.position.set(-2.3,0,0.35);world.add(database);
-  for(let i=0;i<3;i++){
-    const cylinder = new THREE.Mesh(new THREE.CylinderGeometry(0.57,0.57,0.36,40), i===2?green:olive);
-    cylinder.position.y=i*0.43;database.add(cylinder);
-    const rim = new THREE.Mesh(new THREE.TorusGeometry(0.565,0.019,6,40),signal);
-    rim.rotation.x=Math.PI/2;rim.position.y=i*0.43+0.17;database.add(rim);
-  }
-  const metrics = new THREE.Group();metrics.position.set(2.05,1.25,-0.2);metrics.rotation.y=-0.22;world.add(metrics);
-  box(1.45,1.6,0.19,olive,0,0,0,metrics);
-  const chart=new THREE.Mesh(new THREE.PlaneGeometry(1.27,1.41),screenTexture('metrics'));chart.position.z=0.103;metrics.add(chart);
-  box(0.12,0.78,0.13,green,2.05,0.08,-0.2);box(1,0.65,0.8,green,2.05,-0.02,1.45);
-  for(let i=0;i<3;i++) box(0.12,0.07,0.04,graphite,1.8+i*0.23,0.05,1.86);
-  const routes=[
-    [[-2.3,-0.24,0.45],[-2.3,-0.24,1.8],[0.3,-0.24,1.8],[2.05,-0.24,1.45]],
-    [[2.05,-0.24,1.45],[2.8,-0.24,0.7],[2.8,-0.24,-1.35],[0.1,-0.24,-1.35]],
-  ].map(points=>new THREE.CatmullRomCurve3(points.map(p=>new THREE.Vector3(...p)),false,'catmullrom',0.15));
-  const packets=routes.map(curve=>{
-    world.add(new THREE.Mesh(new THREE.TubeGeometry(curve,36,0.018,5,false),olive));
-    const dot=new THREE.Mesh(new THREE.SphereGeometry(0.055,10,8),signal);world.add(dot);return {curve,dot};
+  renderer.setClearColor(0x000000, 0);
+  const world = new THREE.Group();
+  scene.add(world);
+  const paths = createTreePaths();
+  const linePositions = [[], []];
+  paths.forEach(({ curve, gold }) => {
+    const points = curve.getPoints(80);
+    for (let j = 1; j < points.length; j++) linePositions[gold ? 1 : 0].push(...points[j-1].toArray(), ...points[j].toArray());
   });
-  const light=new THREE.DirectionalLight(0xf6ffdd,3);light.position.set(-3,7,5);scene.add(light);
-  const rimLight=new THREE.DirectionalLight(0xdfff00,2);rimLight.position.set(4,3,-4);scene.add(rimLight);
+  linePositions.forEach((positions, i) => {
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    world.add(new THREE.LineSegments(geometry, new THREE.LineBasicMaterial({ color: i ? 0xddec8c : 0x69cc65, transparent: true, opacity: i ? .65 : .28, blending: THREE.AdditiveBlending, depthWrite: false })));
+  });
+  const surface = document.createElement('canvas'); surface.width = surface.height = 64;
+  const ctx = surface.getContext('2d');
+  const gradient = ctx.createRadialGradient(32,32,0,32,32,32);
+  gradient.addColorStop(0,'rgba(245,255,210,1)'); gradient.addColorStop(.12,'rgba(180,255,120,.9)'); gradient.addColorStop(.35,'rgba(95,220,75,.25)'); gradient.addColorStop(1,'rgba(30,140,50,0)');
+  ctx.fillStyle=gradient;ctx.fillRect(0,0,64,64);
+  const glow = new THREE.CanvasTexture(surface);
+  const pulsePositions = new Float32Array(paths.length * 3);
+  const pulseGeometry = new THREE.BufferGeometry();
+  pulseGeometry.setAttribute('position', new THREE.BufferAttribute(pulsePositions,3));
+  world.add(new THREE.Points(pulseGeometry,new THREE.PointsMaterial({ map:glow,color:0xcaff9a,size:.15,transparent:true,blending:THREE.AdditiveBlending,depthWrite:false })));
+  const dust=[];
+  for(let i=0;i<600;i++) { const a=i*2.39996,r=1.2+3.9*((i*73%601)/601);dust.push(Math.cos(a)*r,((i*137%601)/601)*7-3.4,Math.sin(a)*r*.65); }
+  const dustGeometry=new THREE.BufferGeometry();dustGeometry.setAttribute('position',new THREE.Float32BufferAttribute(dust,3));
+  const stars=new THREE.Points(dustGeometry,new THREE.PointsMaterial({map:glow,color:0x8fbb73,size:.045,transparent:true,opacity:.65,depthWrite:false,blending:THREE.AdditiveBlending}));world.add(stars);
+  const hub=new THREE.Sprite(new THREE.SpriteMaterial({map:glow,color:0x95ff73,transparent:true,opacity:.32,blending:THREE.AdditiveBlending,depthWrite:false}));hub.scale.set(2,3,1);hub.position.y=-.45;world.add(hub);
+  const nodes=[];
+  ['</>','API','{ }','SQL','UI','git'].forEach((label,i)=>{
+    const path=paths[12+i*23];const point=path.curve.getPoint(.84);
+    const badge=document.createElement('canvas');badge.width=badge.height=256;
+    const context=badge.getContext('2d');
+    context.fillStyle='rgba(9,22,15,.9)';context.strokeStyle='#bfe780';context.lineWidth=2;
+    context.beginPath();context.arc(128,128,96,0,Math.PI*2);context.fill();context.stroke();
+    context.strokeStyle='rgba(124,202,112,.4)';context.beginPath();context.arc(128,128,110,.2,5.3);context.stroke();
+    context.fillStyle='#e1f5b2';context.font='500 44px monospace';context.textAlign='center';context.textBaseline='middle';context.fillText(label,128,130);
+    const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(badge),transparent:true,depthWrite:false}));sprite.position.copy(point);sprite.position.z+=.2;sprite.scale.setScalar(.68);world.add(sprite);nodes.push(sprite);
+  });
   const target=new THREE.Vector2(),pointer=new THREE.Vector2();
-  let inView=true, frame=0, last=0, slowFrames=0, disposed=false, interval=1000/45;
-  const resize=()=>{const {width,height}=host.getBoundingClientRect();if(!width||!height)return;camera.aspect=width/height;camera.updateProjectionMatrix();renderer.setSize(width,height,false);};
-  const onPointer=e=>target.set((e.clientX/innerWidth-.5)*.18,(e.clientY/innerHeight-.5)*.08);
   const fallback=host.querySelector('.hero-fallback');
+  let inView=true,frame=0,last=0,disposed=false,slowFrames=0,interval=1000/45;
+  function resize(){ const {width,height}=host.getBoundingClientRect();if(!width||!height)return;camera.aspect=width/height;camera.position.z=Math.max(12.8,9.2/camera.aspect);camera.updateProjectionMatrix();renderer.setSize(width,height,false); }
+  const onPointer=e=>target.set((e.clientX/innerWidth-.5)*.35,(e.clientY/innerHeight-.5)*.09);
   function render(time){
-    frame=0;if(disposed || !inView || document.hidden)return;
+    frame=0;if(disposed||!inView||document.hidden)return;
     frame=requestAnimationFrame(render);if(time-last<interval)return;
-    if(last && time-last>55)slowFrames++;else slowFrames=Math.max(0,slowFrames-1);
+    slowFrames=last&&time-last>55?slowFrames+1:Math.max(0,slowFrames-1);
     if(slowFrames>40){renderer.setPixelRatio(1);interval=1000/30;slowFrames=0;}
-    last=time;pointer.lerp(target,.05);world.rotation.y=pointer.x;world.rotation.x=pointer.y;
-    terminal.position.y=1.5+Math.sin(time*.0007)*.035;metrics.position.y=1.25+Math.sin(time*.0008+1)*.065;
-    packets.forEach(({curve,dot},i)=>dot.position.copy(curve.getPointAt((time*.0001+i*.45)%1)));
+    last=time;pointer.lerp(target,.035);world.rotation.y=Math.sin(time*.00008)*.12+pointer.x;world.rotation.x=pointer.y;
+    paths.forEach(({curve},i)=>curve.getPoint((time*.000035+i*.618034)%1).toArray(pulsePositions,i*3));
+    pulseGeometry.attributes.position.needsUpdate=true;
+    hub.material.opacity=.25+Math.sin(time*.001)*.045;
     renderer.render(scene,camera);canvas.style.opacity='1';if(fallback)fallback.style.opacity='0';
   }
-  function resume(){cancelAnimationFrame(frame);frame=0;last=0;if(inView&&!document.hidden&&!disposed)frame=requestAnimationFrame(render);}
+  function resume(){cancelAnimationFrame(frame);last=0;if(inView&&!document.hidden&&!disposed)frame=requestAnimationFrame(render);}
   const observer=new IntersectionObserver(([entry])=>{inView=entry.isIntersecting;resume();},{threshold:.01});
   const sizeObserver=new ResizeObserver(resize);sizeObserver.observe(host);observer.observe(host);
   document.addEventListener('visibilitychange',resume);window.addEventListener('pointermove',onPointer,{passive:true});
-  const restore=event=>{event.preventDefault();canvas.style.opacity='0';if(fallback)fallback.style.opacity='1';dispose();};
-  canvas.addEventListener('webglcontextlost',restore);
+  const restore=event=>{event.preventDefault();canvas.style.opacity='0';if(fallback)fallback.style.opacity='1';dispose();};canvas.addEventListener('webglcontextlost',restore);
   function dispose(){
-    if(disposed)return;disposed=true;cancelAnimationFrame(frame);observer.disconnect();sizeObserver.disconnect();
-    document.removeEventListener('visibilitychange',resume);window.removeEventListener('pointermove',onPointer);canvas.removeEventListener('webglcontextlost',restore);
-    const materials=new Set();scene.traverse(node=>{node.geometry?.dispose();if(node.material)materials.add(node.material);});
-    materials.forEach(m=>{m.map?.dispose();m.dispose();});environment.dispose();renderer.dispose();
+    if(disposed)return;disposed=true;cancelAnimationFrame(frame);observer.disconnect();sizeObserver.disconnect();document.removeEventListener('visibilitychange',resume);window.removeEventListener('pointermove',onPointer);canvas.removeEventListener('webglcontextlost',restore);
+    const materials=new Set(),textures=new Set();scene.traverse(node=>{node.geometry?.dispose();if(node.material)materials.add(node.material);});materials.forEach(m=>{if(m.map)textures.add(m.map);m.dispose();});textures.forEach(t=>t.dispose());renderer.dispose();
   }
   resize();resume();return dispose;
 }

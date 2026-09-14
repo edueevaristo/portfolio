@@ -41,3 +41,15 @@ O resultado publicável fica em `dist/`.
 O site respeita `prefers-reduced-motion`, navegação por teclado e contraste WCAG AA. WebGL não é baixado em dispositivos estreitos, data saver, baixa memória ou reduced-motion.
 
 Leia [docs/AAA-REDESIGN.md](docs/AAA-REDESIGN.md) para a auditoria, direção de design, mapa de motion e contrato do asset Blender.
+
+## Árvore de conexões
+
+O hero usa filamentos procedurais em Three.js, pulsos de energia e nós tecnológicos inspirados em uma árvore de universos. Os caminhos determinísticos estão em `js/tree-paths.js`; `js/scene.js` anima a cena, pausa fora da tela e libera os recursos ao perder o contexto WebGL.
+
+Para recriar a ilustração usada em celulares, dispositivos econômicos e movimento reduzido:
+
+```bash
+node scripts/generate-tree-fallback.mjs
+```
+
+Validação desta alteração: build de produção, inspeção visual em desktop e 390 × 844, console sem erros e ausência de overflow horizontal no celular.
