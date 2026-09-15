@@ -1,4 +1,4 @@
-/* Definitive Yggdrasil composition. The supplied art keeps every original label. */
+/* Isolated Yggdrasil with dimensional motion and localized emissive energy. */
 :root {
   color-scheme: dark;
   --ink: #000000;
@@ -47,25 +47,30 @@
   opacity: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
+  perspective: 1100px;
 }
 .hero-art-frame {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1032 / 758;
-  overflow: hidden;
+  width: min(94%, calc(100svh - 70px));
+  aspect-ratio: 1;
+  overflow: visible;
   isolation: isolate;
-  mask-image: linear-gradient(90deg, transparent, #000 9%, #000 88%, transparent), linear-gradient(transparent, #000 4%, #000 93%, transparent);
-  mask-composite: intersect;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--tree-rx, 0deg)) rotateY(var(--tree-ry, 0deg));
 }
-.hero-art { position: absolute; inset: 0; }
+.hero-art { position: absolute; inset: 0; mix-blend-mode: screen; }
 .hero-art img {
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 187.209302%;
-  max-width: none;
-  height: auto;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
+.tree-energy { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: screen; transform: translateZ(18px); }
+.tree-energy-core { position: absolute; left: 48%; top: 42%; width: 7%; height: 8%; pointer-events: none; background: radial-gradient(ellipse, rgb(210 255 160 / 52%), rgb(157 255 106 / 15%) 30%, transparent 70%); mix-blend-mode: screen; transform: translateZ(26px); opacity: .3; }
+.hero-visual.energy-running .tree-energy-core { animation: treeHeartbeat 3.6s ease-in-out infinite; }
+@keyframes treeHeartbeat { 50% { opacity: .9; transform: translateZ(32px) scale(1.35); } }
 .visual-label {
   inset: auto 11.5% 3.6% 9.2%;
   font-size: 9px;
@@ -120,7 +125,6 @@ body.menu-open .brand svg { fill: var(--signal); }
 .project-media-giovanna { background: var(--ink); }
 
 @media (min-width: 981px) {
-  .hero-art-frame { transform: translateY(-1.45vw); }
   body:not(.menu-open) .site-header:not(.is-scrolled):not(:focus-within) { opacity: 0; pointer-events: none; }
   .site-header { transition: opacity .3s, transform .5s var(--ease-premium); }
 }
@@ -136,9 +140,15 @@ body.menu-open .brand svg { fill: var(--signal); }
   .hero-title { font-size: clamp(72px, 12vw, 116px); }
   .hero-bottom { width: min(590px, 100%); margin-top: 32px; }
   .hero-visual { position: relative; inset: auto; width: min(600px, 100%); height: auto; display: block; margin: 0 auto; padding-bottom: 54px; }
-  .hero-art-frame { aspect-ratio: 941 / 1672; mask-image: linear-gradient(transparent, #000 4%, #000 94%, transparent); }
+  .hero-art-frame { width: 96%; margin-inline: auto; aspect-ratio: 1; }
   .hero-art img { width: 100%; height: 100%; object-fit: contain; }
   .visual-label { inset: auto 5% 24px; display: flex; font-size: 7px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-art-frame { transform: none !important; }
+  .tree-energy { display: none; }
+  .tree-energy-core { animation: none !important; opacity: .25; }
 }
 @media (max-width: 680px) {
   .menu-panel nav span { font-size: clamp(30px, 9.8vw, 54px); }

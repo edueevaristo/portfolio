@@ -44,14 +44,18 @@ Leia [docs/AAA-REDESIGN.md](docs/AAA-REDESIGN.md) para a auditoria, direção de
 
 ## Árvore de conexões
 
-O hero usa as artes definitivas fornecidas por Eduardo. No desktop, `images/yggdrasil-desktop.png` preserva a terceira referência: o enquadramento em `css/yggdrasil.css` mostra apenas a árvore à direita, enquanto o texto e os links à esquerda continuam em HTML. No celular, `images/yggdrasil-mobile.png` mostra a arte vertical completa, abaixo da apresentação. Os rótulos fazem parte da imagem original e também possuem uma descrição acessível.
+O hero usa `images/yggdrasil-isolated.png`: árvore de aparência 3D, sem montanhas, paisagem ou névoa. A arte foi refinada com a ferramenta integrada de geração de imagens e composta sobre preto uniforme (o arquivo não possui canal alpha). A mistura `screen` integra o preto ao site, sem moldura visível. Os rótulos permanecem na imagem e possuem uma descrição acessível. Texto e links continuam em HTML.
+
+`js/tree-energy.js` acrescenta efeitos 2.5D: inclinação com perspectiva, pulsos luminosos em trajetórias ramificadas e partículas projetadas em diferentes profundidades. A geometria da árvore é uma imagem renderizada, não um modelo 3D navegável. O canvas é uma melhoria progressiva, pausa fora da tela e em abas ocultas, reduz custo em dispositivos modestos e desativa movimento quando solicitado pelo sistema.
 
 A interface usa preto, branco e verde `#9dff6a`, com variações de transparência e luminosidade. Fotografias e capturas dos projetos mantêm suas cores originais. A cena procedural anterior permanece no histórico de implementação, mas não é importada pelo site.
 
 Para recriar as variantes otimizadas, preservando as imagens originais:
 
 ```bash
-node scripts/optimize-yggdrasil.mjs
+node scripts/optimize-isolated-tree.mjs
 ```
 
 Ao alterar o hero, validar o build, a composição em 1932 × 814, os breakpoints de desktop e celular, os links e os estados do formulário.
+
+Prompt final da arte (ferramenta integrada, edição): “Preservar exatamente a árvore Yggdrasil realista em 3D, rótulos tecnológicos, folhas, tronco, raízes e filamentos verdes. Substituir todo o fundo por preto uniforme #000000, incluindo espaços entre galhos e raízes; sem paisagem, montanhas, névoa, piso, cursor ou quadriculado. Manter a árvore inteira, enquadramento quadrado e brilho localizado.”

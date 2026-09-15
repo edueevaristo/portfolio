@@ -1,4 +1,5 @@
 import Lenis from 'lenis';
+import { mountTreeEnergy } from './tree-energy.js';
 import 'lenis/dist/lenis.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -413,6 +414,7 @@ function initPageTransitions() {
 }
 
 async function bootstrap() {
+  mountTreeEnergy({ reduceMotion, lowPowerDevice, precisePointer });
   initSmoothScroll();
   initMenu();
   initCursor();
