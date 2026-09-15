@@ -25,7 +25,7 @@ O resultado publicável fica em `dist/`.
 - Vite 8.2
 - GSAP 3.15: ScrollTrigger, Flip, Observer, SplitText, MorphSVG, DrawSVG e CustomEase
 - Lenis 1.3.25
-- Three.js 0.185.1, carregado sob demanda
+- Arte Yggdrasil responsiva em AVIF/WebP, sem runtime 3D no hero
 - HTML semântico e CSS responsivo sem framework visual
 - Sharp para geração reproduzível de AVIF/WebP responsivos
 
@@ -38,18 +38,20 @@ O resultado publicável fica em `dist/`.
 
 ## Qualidade
 
-O site respeita `prefers-reduced-motion`, navegação por teclado e contraste WCAG AA. WebGL não é baixado em dispositivos estreitos, data saver, baixa memória ou reduced-motion.
+O site respeita `prefers-reduced-motion` e navegação por teclado. A árvore é visível mesmo sem JavaScript ou WebGL; a imagem tem prioridade de carregamento e variantes responsivas.
 
 Leia [docs/AAA-REDESIGN.md](docs/AAA-REDESIGN.md) para a auditoria, direção de design, mapa de motion e contrato do asset Blender.
 
 ## Árvore de conexões
 
-O hero usa filamentos procedurais em Three.js, pulsos de energia e nós tecnológicos inspirados em uma árvore de universos. Os caminhos determinísticos estão em `js/tree-paths.js`; `js/scene.js` anima a cena, pausa fora da tela e libera os recursos ao perder o contexto WebGL.
+O hero usa as artes definitivas fornecidas por Eduardo. No desktop, `images/yggdrasil-desktop.png` preserva a terceira referência: o enquadramento em `css/yggdrasil.css` mostra apenas a árvore à direita, enquanto o texto e os links à esquerda continuam em HTML. No celular, `images/yggdrasil-mobile.png` mostra a arte vertical completa, abaixo da apresentação. Os rótulos fazem parte da imagem original e também possuem uma descrição acessível.
 
-Para recriar a ilustração usada em celulares, dispositivos econômicos e movimento reduzido:
+A interface usa preto, branco e verde `#9dff6a`, com variações de transparência e luminosidade. Fotografias e capturas dos projetos mantêm suas cores originais. A cena procedural anterior permanece no histórico de implementação, mas não é importada pelo site.
+
+Para recriar as variantes otimizadas, preservando as imagens originais:
 
 ```bash
-node scripts/generate-tree-fallback.mjs
+node scripts/optimize-yggdrasil.mjs
 ```
 
-Validação desta alteração: build de produção, inspeção visual em desktop e 390 × 844, console sem erros e ausência de overflow horizontal no celular.
+Ao alterar o hero, validar o build, a composição em 1932 × 814, os breakpoints de desktop e celular, os links e os estados do formulário.

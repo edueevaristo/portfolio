@@ -7,7 +7,7 @@
   <meta name="author" content="Eduardo Evaristo">
   <meta name="robots" content="index, follow, noimageindex, max-image-preview:none">
   <meta name="google-site-verification" content="aJyfiumm3vqzZlcAdk1DVXn2fjRrwJokbNEUfZ33QL8">
-  <meta name="theme-color" content="#0b0b0a">
+  <meta name="theme-color" content="#000000">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.eduardoevaristo.com.br/">
   <meta property="og:title" content="Eduardo Evaristo | Desenvolvedor Full Stack Sênior &amp; Creative Developer">
@@ -27,6 +27,7 @@
   <link rel="icon" href="/images/favicon-2026.png" type="image/png" sizes="96x96">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/styles.css?v=8">
+  <link rel="stylesheet" href="/css/yggdrasil.css">
   <title>Eduardo Evaristo | Desenvolvedor Full Stack Sênior &amp; Creative Developer</title>
   <script>document.documentElement.classList.remove('no-js');</script>
   <script type="application/ld+json">
@@ -93,9 +94,15 @@
 
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero-visual" aria-hidden="true">
-        <canvas id="hero-webgl"></canvas>
-        <img class="hero-fallback" src="/images/yggdrasil.svg" width="800" height="700" alt="">
+      <div class="hero-visual" role="img" aria-label="Yggdrasil tecnológica: AWS, Grafana, Three.js, Figma, WordPress, JavaScript, Vue.js, React, GSAP, Marketplaces, NF-e / SEFAZ, Hubs, ERPs, PHP, Laravel, Tailwind CSS, Bootstrap, API, Docker, Git, REST, GraphQL, SQL, MySQL e PostgreSQL.">
+        <div class="hero-art-frame">
+          <picture class="hero-art">
+            <source media="(max-width: 980px)" type="image/avif" srcset="/images/optimized/yggdrasil-mobile-480.avif 480w, /images/optimized/yggdrasil-mobile-941.avif 941w" sizes="(max-width: 600px) 100vw, 600px">
+            <source media="(max-width: 980px)" type="image/webp" srcset="/images/optimized/yggdrasil-mobile-480.webp 480w, /images/optimized/yggdrasil-mobile-941.webp 941w" sizes="(max-width: 600px) 100vw, 600px">
+            <source type="image/avif" srcset="/images/optimized/yggdrasil-desktop-1440.avif 1440w, /images/optimized/yggdrasil-desktop-1932.avif 1932w" sizes="100vw">
+            <img src="/images/optimized/yggdrasil-desktop-1932.webp" srcset="/images/optimized/yggdrasil-desktop-1440.webp 1440w, /images/optimized/yggdrasil-desktop-1932.webp 1932w" sizes="100vw" width="1932" height="814" fetchpriority="high" alt="">
+          </picture>
+        </div>
         <div class="visual-label"><span>Código · dados · conexões</span><span>Ideias conectadas. Universos possíveis.</span></div>
       </div>
 

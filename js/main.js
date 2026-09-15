@@ -121,6 +121,7 @@ function initCursor() {
   const setY = gsap.quickTo(cursor, 'y', { duration: 0.3, ease: 'power3' });
 
   window.addEventListener('pointermove', (event) => {
+    cursor.classList.add('is-active');
     setX(event.clientX);
     setY(event.clientY);
   }, { passive: true });
@@ -187,12 +188,6 @@ function initHeroMotion() {
     opacity: 0.18,
     ease: 'none',
     scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
-  });
-  gsap.to('.hero-fallback', {
-    yPercent: 24,
-    rotate: 14,
-    ease: 'none',
-    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.7 },
   });
 }
 
@@ -417,27 +412,6 @@ function initPageTransitions() {
   });
 }
 
-function initThreeScene() {
-  const lowPower = reduceMotion || lowPowerDevice || window.innerWidth < 760;
-  if (lowPower) return;
-
-  let started = false;
-  const start = () => {
-    if (started) return;
-    started = true;
-    import('./scene.js')
-      .then(({ mountHeroScene }) => mountHeroScene(document.querySelector('#hero-webgl')))
-      .catch(() => document.querySelector('.hero-fallback')?.setAttribute('data-fallback', 'true'));
-  };
-
-  // WebGL is interaction-gated: first paint stays light and synthetic audits do not
-  // download a 3D runtime the visitor may never need.
-  window.addEventListener('pointermove', start, { once: true, passive: true });
-  window.addEventListener('wheel', start, { once: true, passive: true });
-  window.addEventListener('touchstart', start, { once: true, passive: true });
-  window.setTimeout(start, 800);
-}
-
 async function bootstrap() {
   initSmoothScroll();
   initMenu();
@@ -453,7 +427,6 @@ async function bootstrap() {
   initSectionMotion();
   initCapabilities();
   initContactMotion();
-  initThreeScene();
   ScrollTrigger.refresh();
 }
 
