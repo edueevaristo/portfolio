@@ -37,7 +37,7 @@ function initSmoothScroll() {
     syncTouch: false,
     touchMultiplier: 1.15,
     wheelMultiplier: 0.92,
-    anchors: { offset: -72 },
+    anchors: { offset: 0 },
     stopInertiaOnNavigate: true,
   });
 
@@ -83,34 +83,69 @@ function initMenu() {
   const panel = document.querySelector('.menu-panel');
   const links = [...panel.querySelectorAll('nav a')];
 
-  const timeline = gsap.timeline({ paused: true })
-    .set(panel, { autoAlpha: 1 })
-    .to(panel, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.8, ease: 'premium' })
-    .from(links, { yPercent: 115, stagger: 0.045, duration: 0.7, ease: 'premium' }, '-=0.5')
-    .from('.menu-footer', { y: 24, autoAlpha: 0, duration: 0.45 }, '-=0.35');
+  const background = [document.querySelector('main'), document.querySelector('.site-footer')];
+  const destinations = links.map(link => document.querySelector(link.getAttribute('href')));
+  let activeFrame = 0;
+  function updateActive() {
+    activeFrame = 0;
+    const marker = Math.max(120, innerHeight * .28);
+    let current = destinations[0];
+    destinations.forEach(section => { if (section.getBoundingClientRect().top <= marker) current = section; });
+    links.forEach(link => {
+      if (link.hash === `#${current.id}`) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  }
+  window.addEventListener('scroll', () => { if (!activeFrame) activeFrame = requestAnimationFrame(updateActive); }, { passive: true });
+  updateActive();
 
-  function setMenu(open) {
+  function navigate(target) {
+    const heading = target.querySelector('h1, h2') || target;
+    const focus = () => { heading.setAttribute('tabindex', '-1'); heading.focus({ preventScroll: true }); };
+    history.pushState(null, '', `#${target.id}`);
+    if (lenis) {
+      focus(); lenis.scrollTo(target, { offset: 0, onComplete: focus });
+      // Pinning can reparent a heading and release focus during the scroll.
+      window.setTimeout(() => { if (!menuIsOpen && location.hash === `#${target.id}`) focus(); }, 1200);
+    }
+    else { target.scrollIntoView({ behavior: reduceMotion ? 'instant' : 'smooth', block: 'start' }); focus(); }
+  }
+
+  function setMenu(open, target = null) {
     menuIsOpen = open;
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
     panel.setAttribute('aria-hidden', String(!open));
+    panel.inert = !open;
+    background.forEach(element => { element.inert = open; });
     document.body.classList.toggle('menu-open', open);
-
+    gsap.killTweensOf([panel, ...links]);
     if (open) {
       lenis?.stop();
-      timeline.timeScale(1).play();
-      window.setTimeout(() => links[0].focus(), 450);
+      updateActive();
+      gsap.set(panel, { autoAlpha: 1 });
+      gsap.to(panel, { clipPath: 'inset(0% 0% 0% 0%)', duration: reduceMotion ? 0 : .45, ease: 'premium', onComplete: () => { if (menuIsOpen) links.find(link => link.hasAttribute('aria-current'))?.focus(); } });
+      gsap.fromTo(links, { y: reduceMotion ? 0 : 20, opacity: 0 }, { y: 0, opacity: 1, duration: reduceMotion ? 0 : .4, stagger: reduceMotion ? 0 : .025 });
     } else {
-      timeline.timeScale(1.35).reverse();
       lenis?.start();
       toggle.focus({ preventScroll: true });
+      gsap.to(panel, { clipPath: 'inset(0 0 100% 0)', duration: reduceMotion ? 0 : .3, ease: 'premium', onComplete: () => { gsap.set(panel, { autoAlpha: 0 }); if (target) navigate(target); } });
     }
   }
 
   toggle.addEventListener('click', () => setMenu(!menuIsOpen));
-  links.forEach((link) => link.addEventListener('click', () => setMenu(false)));
+  links.forEach((link) => link.addEventListener('click', (event) => {
+    event.preventDefault(); event.stopPropagation();
+    setMenu(false, document.querySelector(link.getAttribute('href')));
+  }));
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && menuIsOpen) setMenu(false);
+    if (event.key === 'Tab' && menuIsOpen) {
+      const items = [toggle, ...panel.querySelectorAll('a[href]')];
+      const first = items[0], last = items.at(-1);
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
   });
 }
 
@@ -169,7 +204,8 @@ function initHeader() {
         morphed = nextMorph;
         gsap.to('.brand-shape', { morphSVG: morphed ? '#brand-shape-alt' : 'M5 5H37V13H14V18H33V25H14V29H37V37H5Z', duration: 0.65, ease: 'premium' });
       }
-      if (!menuIsOpen) gsap.to(header, { yPercent: self.direction === 1 && self.scroll() > 260 ? -105 : 0, duration: 0.45, ease: 'premium', overwrite: true });
+      // Keep navigation reachable while inspecting long sections and the 3D tree.
+      gsap.set(header, { yPercent: 0 });
     },
   });
 }
@@ -425,11 +461,17 @@ async function bootstrap() {
   initPageTransitions();
 
   await playLoader();
+  await document.fonts.ready;
   initHeroMotion();
   initSectionMotion();
   initCapabilities();
   initContactMotion();
   ScrollTrigger.refresh();
+  const initialTarget = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (initialTarget) {
+    if (lenis) lenis.scrollTo(initialTarget, { immediate: true });
+    else initialTarget.scrollIntoView({ behavior: 'instant', block: 'start' });
+  }
 }
 
 // A failed/slow enhancement must never leave the page covered by the loader.

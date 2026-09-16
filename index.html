@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="/css/styles.css?v=8">
   <link rel="stylesheet" href="/css/yggdrasil.css">
   <link rel="stylesheet" href="/css/knowledge-tree.css">
+  <link rel="stylesheet" href="/css/presentation.css">
   <title>Eduardo Evaristo | Desenvolvedor Full Stack Sênior &amp; Creative Developer</title>
   <script>document.documentElement.classList.remove('no-js');</script>
   <script type="application/ld+json">
@@ -78,11 +79,12 @@
     </button>
   </header>
 
-  <div class="menu-panel" id="menu-panel" aria-hidden="true">
+  <div class="menu-panel" id="menu-panel" aria-hidden="true" inert data-lenis-prevent>
     <div class="menu-noise" aria-hidden="true"></div>
     <nav aria-label="Navegação principal">
-      <a href="#work"><small>01</small><span>Projetos</span></a>
-      <a href="#about"><small>02</small><span>Sobre</span></a>
+      <a href="#top"><small>00</small><span>Início</span></a>
+      <a href="#about"><small>01</small><span>Sobre</span></a>
+      <a href="#work"><small>02</small><span>Projetos</span></a>
       <a href="#capabilities"><small>03</small><span>Especialidades</span></a>
       <a href="#experience"><small>04</small><span>Trajetória</span></a>
       <a href="#contact"><small>05</small><span>Contato</span></a>
@@ -141,7 +143,6 @@
           <span class="section-label">01 / Sobre</span>
           <p>Experiência, formação e visão de produto.</p>
         </div>
-        <h2 id="manifesto-title" class="manifesto-title split-lines">Muito prazer,<br><span>sou o Eduardo.</span></h2>
         <div class="manifesto-grid">
           <div class="manifesto-aside">
             <div class="portrait-frame image-reveal">
@@ -154,21 +155,29 @@
             </div>
           </div>
           <div class="manifesto-copy">
-            <p class="lead split-lines">Sou desenvolvedor, curioso por natureza e movido pela vontade de construir coisas que façam sentido para as pessoas.</p>
+            <h2 id="manifesto-title" class="manifesto-title">Muito prazer,<br><span>sou o Eduardo.</span></h2>
+            <p class="lead">Sou desenvolvedor, curioso por natureza e movido pela vontade de construir coisas que façam sentido para as pessoas.</p>
             <p>Há mais de quatro anos trabalho com desenvolvimento web. Minha rotina passa pelo backend, pelas interfaces e pelas integrações que fazem tudo conversar. Gosto de aprender, trocar experiências e acompanhar uma ideia até ela ganhar vida na tela.</p>
-            <div class="profile-facts" aria-label="Resumo profissional de Eduardo Evaristo">
+          </div>
+        </div>
+        <div class="profile-facts" aria-label="Resumo profissional de Eduardo Evaristo">
               <article><span>Atuação atual</span><strong>Fábrica de Códigos</strong><p>Desenvolvedor Full Stack Sênior</p></article>
               <article><span>Produto</span><strong>Shopping de Preços</strong><p>Plataforma que conecta marketplaces e operações de e-commerce.</p></article>
               <article><span>Formação</span><strong>ADS na Unimar</strong><p>Graduação concluída em 2025, em Marília.</p></article>
               <article><span>Especialidade</span><strong>Integrações de ecossistemas</strong><p>Marketplaces, hubs, ERPs e NF-e com a SEFAZ.</p></article>
-            </div>
-            <p class="professional-context">Sou especialista em integrar marketplaces, hubs e ERPs por meio de APIs REST e GraphQL, incluindo regras de emissão de NF-e e comunicação com a SEFAZ via API. Minha base técnica inclui PHP, Laravel, Vue.js, React, PostgreSQL, MySQL, Docker e Git. No frontend, uno GSAP, ScrollTrigger, Tailwind CSS, Bootstrap e fundamentos sólidos de UX/UI.</p>
-            <div class="principles">
+        </div>
+        <div class="about-context">
+          <h3>O que eu conecto<br><span>no dia a dia.</span></h3>
+          <div>
+            <p>Sou especialista em integrar marketplaces, hubs e ERPs por meio de APIs REST e GraphQL, incluindo regras de emissão de NF-e e comunicação com a SEFAZ via API.</p>
+            <p>Minha base técnica inclui PHP, Laravel, Vue.js, React, PostgreSQL, MySQL, Docker e Git. No frontend, uno GSAP, ScrollTrigger, Tailwind CSS, Bootstrap e fundamentos sólidos de UX/UI.</p>
+            <a class="about-tree-link" href="#knowledge-tree">Explore minhas tecnologias <span>↗</span></a>
+          </div>
+        </div>
+        <div class="principles" aria-label="Princípios do meu trabalho">
               <article><span>01</span><h3>Clareza vence ruído.</h3><p>Cada decisão precisa orientar, provar ou converter.</p></article>
               <article><span>02</span><h3>Motion é informação.</h3><p>Movimento revela hierarquia, estado e causalidade.</p></article>
               <article><span>03</span><h3>Performance é design.</h3><p>Velocidade percebida faz parte da identidade.</p></article>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -327,7 +336,7 @@
   <footer class="site-footer">
     <div class="section-shell footer-grid">
       <div><a href="#top" class="footer-brand">EE®</a><p>Do sistema à experiência.</p></div>
-      <div><span>Navegação</span><a href="#work">Projetos</a><a href="#about">Sobre</a><a href="#capabilities">Especialidades</a></div>
+      <div class="footer-navigation"><span>Navegação</span><a href="#top">Início</a><a href="#about">Sobre</a><a href="#work">Projetos</a><a href="#capabilities">Especialidades</a><a href="#experience">Trajetória</a><a href="#contact">Contato</a></div>
       <div><span>Social</span><a href="https://github.com/edueevaristo" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/eduardo-evaristo-35151a156" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://www.instagram.com/edueevaristo" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div>
       <div><span>Contato</span><a href="mailto:contato@eduardoevaristo.com.br">Email ↗</a><a href="https://wa.me/5514997918312" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></div>
     </div>
