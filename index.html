@@ -28,6 +28,7 @@
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/styles.css?v=8">
   <link rel="stylesheet" href="/css/yggdrasil.css">
+  <link rel="stylesheet" href="/css/knowledge-tree.css">
   <title>Eduardo Evaristo | Desenvolvedor Full Stack Sênior &amp; Creative Developer</title>
   <script>document.documentElement.classList.remove('no-js');</script>
   <script type="application/ld+json">
@@ -94,16 +95,13 @@
 
   <main id="main">
     <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero-visual" role="img" aria-label="Yggdrasil tecnológica: AWS, Grafana, Three.js, Figma, WordPress, JavaScript, Vue.js, React, GSAP, Marketplaces, NF-e / SEFAZ, Hubs, ERPs, PHP, Laravel, Tailwind CSS, Bootstrap, API, Docker, Git, REST, GraphQL, SQL, MySQL e PostgreSQL.">
-        <div class="hero-art-frame">
-          <picture class="hero-art">
-            <source type="image/webp" srcset="/images/optimized/yggdrasil-isolated-480.webp 480w, /images/optimized/yggdrasil-isolated-800.webp 800w, /images/optimized/yggdrasil-isolated-1254.webp 1254w" sizes="(max-width: 600px) 96vw, (max-width: 980px) 576px, 46vw">
-            <img src="/images/optimized/yggdrasil-isolated-1254.webp" width="1254" height="1254" fetchpriority="high" alt="">
-          </picture>
-          <canvas class="tree-energy" aria-hidden="true"></canvas>
-          <div class="tree-energy-core" aria-hidden="true"></div>
-        </div>
-        <div class="visual-label"><span>Código · dados · conexões</span><span>Ideias conectadas. Universos possíveis.</span></div>
+      <div class="hero-portrait">
+        <picture>
+          <source type="image/avif" srcset="/images/optimized/eduardo-evento-sm.avif 480w, /images/optimized/eduardo-evento.avif 1312w" sizes="(max-width: 980px) 90vw, 43vw">
+          <source type="image/webp" srcset="/images/optimized/eduardo-evento-sm.webp 480w, /images/optimized/eduardo-evento.webp 1312w" sizes="(max-width: 980px) 90vw, 43vw">
+          <img src="/images/eduardo-evento.jpg" width="1312" height="1199" fetchpriority="high" alt="Eduardo Evaristo sorrindo em um evento de tecnologia">
+        </picture>
+        <div class="portrait-caption"><span>Eduardo Evaristo</span><span>Conectando pessoas e código.</span></div>
       </div>
 
       <div class="hero-copy section-shell">
@@ -257,10 +255,34 @@
           </div>
         </div>
       </div>
-      <div class="stack-cloud section-shell" aria-label="Tecnologias e especialidades principais">
-        <span>Grafana</span>
-        <span>PHP</span><span>Laravel</span><span>Vue.js</span><span>React</span><span>JavaScript</span><span>GSAP</span><span>PostgreSQL</span><span>MySQL</span><span>Docker</span><span>REST</span><span>GraphQL</span><span>Marketplaces</span><span>Hubs</span><span>ERPs</span><span>NF-e / SEFAZ</span><span>Tailwind CSS</span><span>Bootstrap</span><span>Three.js</span><span>Figma</span><span>Git</span><span>WordPress</span><span>AWS</span>
-      </div>
+      <section class="knowledge-tree" id="knowledge-tree" aria-labelledby="knowledge-title">
+        <div class="section-shell knowledge-heading">
+          <div><span class="section-label">Conexões que fazem parte do meu trabalho</span><h2 id="knowledge-title">Uma árvore.<br><em>Muitas possibilidades.</em></h2></div>
+          <p>Das raízes dos dados às experiências na interface. Explore as tecnologias e as conexões entre elas.</p>
+        </div>
+        <div class="tree-experience" data-tree-experience>
+          <div class="tree-toolbar">
+            <span class="tree-state" role="status">Preparando a experiência</span>
+            <div><button type="button" data-tree-motion aria-pressed="false">Pausar movimento</button><button type="button" data-tree-reset>Visão geral ↗</button></div>
+          </div>
+          <div class="tree-viewport" data-tree-viewport data-lenis-prevent>
+            <img class="tree-static" src="/images/optimized/yggdrasil-isolated-800.webp" width="800" height="800" loading="lazy" alt="Árvore luminosa com tecnologias distribuídas nas raízes, tronco e copa">
+            <canvas class="knowledge-canvas" aria-label="Árvore de tecnologias em 3D. Arraste para girar; use os botões de tecnologia para explorar."></canvas>
+            <div class="tree-labels" aria-label="Nós da árvore"></div>
+            <aside class="tree-detail" hidden aria-labelledby="tree-detail-title">
+              <button class="tree-detail-back" type="button" data-tree-back>← Voltar</button>
+              <span class="tree-detail-zone"></span>
+              <h3 id="tree-detail-title"></h3>
+              <p class="tree-detail-intro">Minha experiência com esta tecnologia:</p>
+              <p class="tree-detail-content"></p>
+              <span class="tree-content-note">Conteúdo em preparação.</span>
+            </aside>
+          </div>
+          <div class="tree-instructions"><span>Arraste para girar · Aproxime com dois dedos ou a roda do mouse</span><span>Selecione um nó para explorar ↗</span></div>
+          <details class="tree-directory"><summary>Explorar tecnologias pela lista</summary><div class="tree-directory-buttons"></div></details>
+          <noscript><p class="tree-noscript">Ative o JavaScript para explorar os nós interativos. Tecnologias: MySQL, SQL, PostgreSQL, GraphQL, REST, Docker, Git, API, PHP, Laravel, JavaScript, Vue.js, React, Tailwind CSS, Bootstrap, GSAP, Three.js, Grafana, Hubs, ERPs, Figma, AWS, WordPress, Marketplaces, NF-e / SEFAZ.</p></noscript>
+        </div>
+      </section>
     </section>
 
     <section class="experience" id="experience" aria-labelledby="experience-title">

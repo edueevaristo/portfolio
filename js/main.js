@@ -1,5 +1,5 @@
 import Lenis from 'lenis';
-import { mountTreeEnergy } from './tree-energy.js';
+import { initKnowledgeTree } from './knowledge-tree/index.js';
 import 'lenis/dist/lenis.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -182,7 +182,7 @@ function initHeroMotion() {
     .from('.hero-kicker span', { yPercent: 120, duration: 0.7 })
     .from(titleSplit.chars, { yPercent: 115, rotate: 3, duration: 1.05, stagger: 0.018 }, '-=0.42')
     .from('.hero-bottom > *', { y: 30, autoAlpha: 0, duration: 0.7, stagger: 0.1 }, '-=0.55')
-    .from('.hero-index, .scroll-cue, .visual-label', { autoAlpha: 0, duration: 0.5 }, '-=0.3');
+    .from('.hero-index, .scroll-cue, .portrait-caption', { autoAlpha: 0, duration: 0.5 }, '-=0.3');
 
   gsap.to('.hero-copy', {
     yPercent: 18,
@@ -414,7 +414,7 @@ function initPageTransitions() {
 }
 
 async function bootstrap() {
-  mountTreeEnergy({ reduceMotion, lowPowerDevice, precisePointer });
+  initKnowledgeTree({ reduceMotion, lowPowerDevice });
   initSmoothScroll();
   initMenu();
   initCursor();

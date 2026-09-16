@@ -1,61 +1,48 @@
-# Eduardo Evaristo: Portfolio AAA
+# Eduardo Evaristo — portfólio
 
-Portfólio de Eduardo Evaristo, Full Stack Engineer e Creative Developer. A experiência foi reconstruída com direção editorial, motion design orientado à narrativa e performance progressiva.
+Portfólio pessoal com foto colorida na home, projetos e árvore de tecnologias 3D interativa na seção de competências. Interface em preto, branco e verde `#9dff6a`; fotos e projetos mantêm suas cores originais.
 
-## Rodando localmente
+## Desenvolvimento
 
-Requisitos: Node.js 22+ e npm.
+Node.js 22+ e npm:
 
-```bash
+```sh
 npm install
 npm run dev
-```
-
-Build de produção:
-
-```bash
+npm test
 npm run build
 npm run preview
 ```
 
-O resultado publicável fica em `dist/`.
+O conteúdo publicável fica em `dist/`. O build preserva o endpoint PHP de contato. Credenciais não devem ser incluídas no repositório. Na publicação, enviar os assets antes de `index.html`.
 
-## Stack
+## Stack e árvore 3D
 
-- Vite 8.2
-- GSAP 3.15: ScrollTrigger, Flip, Observer, SplitText, MorphSVG, DrawSVG e CustomEase
-- Lenis 1.3.25
-- Arte Yggdrasil responsiva em AVIF/WebP, sem runtime 3D no hero
-- HTML semântico e CSS responsivo sem framework visual
-- Sharp para geração reproduzível de AVIF/WebP responsivos
+- Vite 8.2, Three.js r185, GSAP 3.15 e Lenis 1.3.
+- Foto da home com variantes AVIF/WebP; o runtime 3D só é importado quando a seção está próxima da tela.
+- `js/knowledge-tree/data.js`: nomes, posições e textos dos 25 nós. Substitua os placeholders `[CONTEÚDO SOBRE ...]` por relatos reais em primeira pessoa. Nenhuma experiência foi inventada.
+- `js/knowledge-tree/geometry.js`: madeira volumétrica procedural, tronco entrelaçado, raízes com LOD, galhos ramificados, veias sobre a superfície e folhas instanciadas.
+- `js/knowledge-tree/scene.js`: OrbitControls, seleção por raycast, rótulos HTML, zoom GSAP, energia, partículas e gerenciamento de recursos.
+- `js/knowledge-tree/index.js`: carregamento progressivo, painel, lista acessível, teclado, movimento reduzido e fallback.
+- `css/knowledge-tree.css`: foto, seção interativa, controles e painel responsivo.
 
-## Scripts
+O pós-processamento usa os módulos oficiais de Three.js: RenderPass, SSAOPass, UnrealBloomPass, ShaderPass (vinheta/grão) e OutputPass. O RenderPass deve permanecer habilitado: SSAOPass multiplica a imagem existente, não substitui a renderização de beleza.
 
-- `npm run dev`: desenvolvimento com HMR
-- `npm run build`: bundle de produção
-- `npm run preview`: serve o build localmente
-- `npm run optimize:images`: recria variantes AVIF/WebP em `images/optimized/`
+## Interação e qualidade adaptativa
 
-## Qualidade
+Arraste para orbitar, use a roda/pinça para aproximar e selecione um nó ou uma tecnologia na lista. O painel mostra o placeholder correspondente. “Voltar”, Escape ou clique no espaço livre da cena restauram a câmera; “Visão geral” restaura o enquadramento inicial. O movimento automático pode ser pausado.
 
-O site respeita `prefers-reduced-motion` e navegação por teclado. A árvore é visível mesmo sem JavaScript ou WebGL; a imagem tem prioridade de carregamento e variantes responsivas.
+Desktop usa SSAO, bloom e resolução limitada a DPR 1,5. Celulares/aparelhos modestos usam DPR 1, menos folhas/partículas e bloom sem SSAO. Quadros persistentemente lentos reduzem a qualidade. A renderização pausa fora da tela e em abas ocultas. `prefers-reduced-motion` desliga a rotação e os movimentos contínuos inicialmente, preservando a exploração manual.
 
-Leia [docs/AAA-REDESIGN.md](docs/AAA-REDESIGN.md) para a auditoria, direção de design, mapa de motion e contrato do asset Blender.
+Sem WebGL, a arte estática e a lista acessível permanecem disponíveis. Não há garantia de desempenho idêntico em todo aparelho. A árvore é uma criação procedural em tempo real inspirada na referência, não um asset fotogramétrico ou render offline idêntico à imagem.
 
-## Árvore de conexões
+## Validação
 
-O hero usa `images/yggdrasil-isolated.png`: árvore de aparência 3D, sem montanhas, paisagem ou névoa. A arte foi refinada com a ferramenta integrada de geração de imagens e composta sobre preto uniforme (o arquivo não possui canal alpha). A mistura `screen` integra o preto ao site, sem moldura visível. Os rótulos permanecem na imagem e possuem uma descrição acessível. Texto e links continuam em HTML.
+`npm test` cobre os nomes obrigatórios, placeholders, geometria volumétrica finita, normais externas, instancing e LOD. Além do build, conferir no navegador:
 
-`js/tree-energy.js` acrescenta efeitos 2.5D: inclinação com perspectiva, pulsos luminosos em trajetórias ramificadas e partículas projetadas em diferentes profundidades. A geometria da árvore é uma imagem renderizada, não um modelo 3D navegável. O canvas é uma melhoria progressiva, pausa fora da tela e em abas ocultas, reduz custo em dispositivos modestos e desativa movimento quando solicitado pelo sistema.
+- home e seção 3D em desktop e celular, sem overflow horizontal;
+- seleção de raízes/copa, zoom, retorno, órbita e pausa;
+- Tab/Enter/Escape, movimento reduzido e perda de contexto WebGL;
+- asset e interação no endereço publicado após deploy.
 
-A interface usa preto, branco e verde `#9dff6a`, com variações de transparência e luminosidade. Fotografias e capturas dos projetos mantêm suas cores originais. A cena procedural anterior permanece no histórico de implementação, mas não é importada pelo site.
-
-Para recriar as variantes otimizadas, preservando as imagens originais:
-
-```bash
-node scripts/optimize-isolated-tree.mjs
-```
-
-Ao alterar o hero, validar o build, a composição em 1932 × 814, os breakpoints de desktop e celular, os links e os estados do formulário.
-
-Prompt final da arte (ferramenta integrada, edição): “Preservar exatamente a árvore Yggdrasil realista em 3D, rótulos tecnológicos, folhas, tronco, raízes e filamentos verdes. Substituir todo o fundo por preto uniforme #000000, incluindo espaços entre galhos e raízes; sem paisagem, montanhas, névoa, piso, cursor ou quadriculado. Manter a árvore inteira, enquadramento quadrado e brilho localizado.”
+`npm run optimize:images` recria variantes de imagens. A arte anterior em `images/optimized/yggdrasil-isolated-*.webp` é somente fallback; os módulos antigos de árvore 2.5D não são importados pela página.
