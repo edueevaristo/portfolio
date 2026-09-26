@@ -88,25 +88,60 @@ section[id] {
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   gap: clamp(32px, 5vw, 80px);
   margin-bottom: 52px;
+  padding-block: clamp(30px, 4vw, 56px);
+  border-block: 1px solid var(--line);
 }
-.about-context h3 {
-  font-size: clamp(30px, 3vw, 44px);
-  line-height: 1.1;
+.about-skills,
+.about-tools {
+  min-width: 0;
+}
+.about-context-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 17px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--signal);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.about-skills h3 {
+  margin-top: 22px;
+  font-size: clamp(34px, 4vw, 62px);
+  line-height: 1.08;
   letter-spacing: -0.035em;
   font-weight: 500;
 }
-.about-context h3 span {
-  color: var(--signal);
+.about-tools {
+  padding-top: 1px;
+  border-top: 1px solid var(--line);
 }
-.about-context p {
-  color: var(--paper-dim);
-  font-size: 17px;
-  line-height: 1.7;
-}
-.about-context p + p {
+.about-tools .about-context-label {
   margin-top: 18px;
 }
-.about-tech-link {
+.about-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 64px);
+  gap: clamp(14px, 1.8vw, 24px);
+  margin-top: 24px;
+}
+.about-tools-grid li,
+.about-tools-grid img {
+  width: 64px;
+  height: 64px;
+}
+.about-tools-grid img {
+  border-radius: 16px;
+  transition: transform .3s var(--ease-premium), box-shadow .3s ease;
+}
+.about-tools-grid img:hover {
+  transform: translateY(-5px) scale(1.06);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .38);
+}
+.about-tree-link {
   display: inline-flex;
   gap: 24px;
   margin-top: 25px;
@@ -115,7 +150,7 @@ section[id] {
   color: var(--signal);
   font-size: 14px;
 }
-.about-tech-link:hover {
+.about-tree-link:hover {
   border-color: var(--signal);
 }
 .manifesto .principles {
@@ -225,8 +260,21 @@ body:not(.menu-open) .site-header:not(.is-scrolled):not(:focus-within) {
   }
   .about-context {
     grid-template-columns: 1fr;
-    gap: 22px;
+    gap: 28px;
     margin-bottom: 36px;
+  }
+  .about-skills h3 {
+    font-size: clamp(37px, 10vw, 58px);
+  }
+  .about-tools-grid {
+    grid-template-columns: repeat(4, minmax(0, 64px));
+    gap: clamp(10px, 3vw, 18px);
+  }
+  .about-tools-grid li,
+  .about-tools-grid img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
   }
   .manifesto .principles {
     grid-template-columns: 1fr;
