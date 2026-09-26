@@ -1,6 +1,6 @@
 # Eduardo Evaristo — portfólio
 
-Portfólio pessoal com foto colorida na home, projetos e árvore de tecnologias 3D interativa na seção de competências. Interface em preto, branco e verde `#9dff6a`; fotos e projetos mantêm suas cores originais.
+Portfólio com foto colorida na home, apresentação profissional, projetos e laboratório interativo de tecnologias. Interface em preto, branco e verde `#9dff6a`.
 
 ## Desenvolvimento
 
@@ -14,35 +14,38 @@ npm run build
 npm run preview
 ```
 
-O conteúdo publicável fica em `dist/`. O build preserva o endpoint PHP de contato. Credenciais não devem ser incluídas no repositório. Na publicação, enviar os assets antes de `index.html`.
+O conteúdo publicável fica em `dist/`. O endpoint PHP de contato é preservado. Credenciais não devem entrar no repositório. Enviar os assets antes de `index.html` ao publicar.
 
-## Stack e árvore 3D
+## Laboratório de tecnologias
 
-- Vite 8.2, Three.js r185, GSAP 3.15 e Lenis 1.3.
-- Foto da home com variantes AVIF/WebP; o runtime 3D só é importado quando a seção está próxima da tela.
-- `js/knowledge-tree/data.js`: nomes, posições e textos dos 25 nós. Substitua os placeholders `[CONTEÚDO SOBRE ...]` por relatos reais em primeira pessoa. Nenhuma experiência foi inventada.
-- `js/knowledge-tree/geometry.js`: madeira volumétrica procedural, tronco entrelaçado, raízes com LOD, galhos ramificados, veias sobre a superfície e folhas instanciadas.
-- `js/knowledge-tree/scene.js`: OrbitControls, seleção por raycast, rótulos HTML, zoom GSAP, energia, partículas e gerenciamento de recursos.
-- `js/knowledge-tree/index.js`: carregamento progressivo, painel, lista acessível, teclado, movimento reduzido e fallback.
-- `css/knowledge-tree.css`: foto, seção interativa, controles e painel responsivo.
+A seção `#technologies` substitui a antiga árvore por uma instalação de hardware em miniatura: um processador central conectado a seis módulos. A foto e os ajustes de navegação/Sobre permanecem.
 
-O pós-processamento usa os módulos oficiais de Three.js: RenderPass, SSAOPass, UnrealBloomPass, ShaderPass (vinheta/grão) e OutputPass. O RenderPass deve permanecer habilitado: SSAOPass multiplica a imagem existente, não substitui a renderização de beleza.
+- `js/technology-lab/data.js`: seis áreas e 25 tecnologias.
+- `js/technology-lab/model.js`: peças arredondadas, materiais PBR, vidro, metal, circuitos e contatos instanciados.
+- `js/technology-lab/scene.js`: Three.js r185, iluminação de ambiente, bloom moderado, circuitos animados, seleção por raycast e enquadramento limitado.
+- `js/technology-lab/index.js`: abas acessíveis, teclado, seleção de tecnologias, GSAP e carregamento progressivo.
+- `css/technology-lab.css`: apresentação, painel responsivo, mapa alternativo e foto da home.
+- `css/portfolio-theme.css`: paleta e ajustes globais preservados da identidade visual.
+- `css/presentation.css`: hierarquia de Sobre e navegação consistente.
 
-## Interação e qualidade adaptativa
+As abas destacam as stacks principais e os módulos 3D exibem seus nomes na própria instalação. Um clique no módulo seleciona a área correspondente e revela todas as ferramentas relacionadas. Setas, Home e End navegam pelas abas. O mapa HTML/SVG preserva toda a navegação se o WebGL falhar.
 
-Arraste para orbitar, use a roda/pinça para aproximar e selecione um nó ou uma tecnologia na lista. O painel mostra o placeholder correspondente. “Voltar”, Escape ou clique no espaço livre da cena restauram a câmera; “Visão geral” restaura o enquadramento inicial. O movimento automático pode ser pausado.
+## Performance e acessibilidade
 
-Desktop usa SSAO, bloom e resolução limitada a DPR 1,5. Celulares/aparelhos modestos usam DPR 1, menos folhas/partículas e bloom sem SSAO. Quadros persistentemente lentos reduzem a qualidade. A renderização pausa fora da tela e em abas ocultas. `prefers-reduced-motion` desliga a rotação e os movimentos contínuos inicialmente, preservando a exploração manual.
+O runtime Three.js é carregado somente perto da seção. Desktop usa DPR máximo 1,5 e multisampling; mobile usa DPR 1 sem multisampling, com navegação de página preservada por toque. A qualidade diminui se a renderização permanecer lenta. A cena interrompe a renderização fora da tela, em abas ocultas e quando está pausada/estável.
 
-Sem WebGL, a arte estática e a lista acessível permanecem disponíveis. Não há garantia de desempenho idêntico em todo aparelho. A árvore é uma criação procedural em tempo real inspirada na referência, não um asset fotogramétrico ou render offline idêntico à imagem.
+`prefers-reduced-motion` é respeitado. A cena mantém a informação em HTML, sem depender do canvas. Não há métricas fictícias de desempenho ou operações reais de infraestrutura: o modelo é uma representação visual.
 
 ## Validação
 
-`npm test` cobre os nomes obrigatórios, placeholders, geometria volumétrica finita, normais externas, instancing e LOD. Além do build, conferir no navegador:
+`npm test` verifica ordem dos menus/rodapé, âncoras, tecnologias, módulos 3D, reutilização de geometria e retirada da antiga experiência da página.
 
-- home e seção 3D em desktop e celular, sem overflow horizontal;
-- seleção de raízes/copa, zoom, retorno, órbita e pausa;
-- Tab/Enter/Escape, movimento reduzido e perda de contexto WebGL;
-- asset e interação no endereço publicado após deploy.
+Verificar também no navegador:
 
-`npm run optimize:images` recria variantes de imagens. A arte anterior em `images/optimized/yggdrasil-isolated-*.webp` é somente fallback; os módulos antigos de árvore 2.5D não são importados pela página.
+- abas, raycast, pausa, restauração e teclado;
+- mobile em 390 px, sem overflow e sem prender o scroll;
+- fallback após perda de WebGL e movimento reduzido;
+- home, Sobre, menus e projetos;
+- HTML e assets publicados contra o build local.
+
+Os arquivos da antiga árvore foram retirados do runtime e sua implementação anterior pode ser recuperada no Git. Imagens-fonte antigas foram preservadas no repositório, mas não são usadas pela página nem pelo fallback.

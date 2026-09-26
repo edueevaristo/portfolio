@@ -27,8 +27,8 @@
   <link rel="icon" href="/images/favicon-2026.png" type="image/png" sizes="96x96">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/css/styles.css?v=8">
-  <link rel="stylesheet" href="/css/yggdrasil.css">
-  <link rel="stylesheet" href="/css/knowledge-tree.css">
+  <link rel="stylesheet" href="/css/portfolio-theme.css">
+  <link rel="stylesheet" href="/css/technology-lab.css">
   <link rel="stylesheet" href="/css/presentation.css">
   <title>Eduardo Evaristo | Desenvolvedor Full Stack Sênior &amp; Creative Developer</title>
   <script>document.documentElement.classList.remove('no-js');</script>
@@ -171,7 +171,7 @@
           <div>
             <p>Sou especialista em integrar marketplaces, hubs e ERPs por meio de APIs REST e GraphQL, incluindo regras de emissão de NF-e e comunicação com a SEFAZ via API.</p>
             <p>Minha base técnica inclui PHP, Laravel, Vue.js, React, PostgreSQL, MySQL, Docker e Git. No frontend, uno GSAP, ScrollTrigger, Tailwind CSS, Bootstrap e fundamentos sólidos de UX/UI.</p>
-            <a class="about-tree-link" href="#knowledge-tree">Explore minhas tecnologias <span>↗</span></a>
+            <a class="about-tech-link" href="#technologies">Explore minhas tecnologias <span>↗</span></a>
           </div>
         </div>
         <div class="principles" aria-label="Princípios do meu trabalho">
@@ -264,32 +264,47 @@
           </div>
         </div>
       </div>
-      <section class="knowledge-tree" id="knowledge-tree" aria-labelledby="knowledge-title">
-        <div class="section-shell knowledge-heading">
-          <div><span class="section-label">Conexões que fazem parte do meu trabalho</span><h2 id="knowledge-title">Uma árvore.<br><em>Muitas possibilidades.</em></h2></div>
-          <p>Das raízes dos dados às experiências na interface. Explore as tecnologias e as conexões entre elas.</p>
-        </div>
-        <div class="tree-experience" data-tree-experience>
-          <div class="tree-toolbar">
-            <span class="tree-state" role="status">Preparando a experiência</span>
-            <div><button type="button" data-tree-motion aria-pressed="false">Pausar movimento</button><button type="button" data-tree-reset>Visão geral ↗</button></div>
+      <section class="technology-lab" id="technologies" aria-labelledby="lab-title">
+        <div class="section-shell">
+          <div class="lab-heading">
+            <div><span class="section-label">Meu repertório, em conexão</span><h2 id="lab-title">Do código.<br><em>À experiência.</em></h2></div>
+            <p>Um produto não vive de uma tecnologia só.<br>Explore as camadas que conecto para dar vida a uma ideia.</p>
           </div>
-          <div class="tree-viewport" data-tree-viewport data-lenis-prevent>
-            <img class="tree-static" src="/images/optimized/yggdrasil-isolated-800.webp" width="800" height="800" loading="lazy" alt="Árvore luminosa com tecnologias distribuídas nas raízes, tronco e copa">
-            <canvas class="knowledge-canvas" aria-label="Árvore de tecnologias em 3D. Arraste para girar; use os botões de tecnologia para explorar."></canvas>
-            <div class="tree-labels" aria-label="Nós da árvore"></div>
-            <aside class="tree-detail" hidden aria-labelledby="tree-detail-title">
-              <button class="tree-detail-back" type="button" data-tree-back>← Voltar</button>
-              <span class="tree-detail-zone"></span>
-              <h3 id="tree-detail-title"></h3>
-              <p class="tree-detail-intro">Minha experiência com esta tecnologia:</p>
-              <p class="tree-detail-content"></p>
-              <span class="tree-content-note">Conteúdo em preparação.</span>
-            </aside>
+          <div class="lab-shell" data-technology-lab>
+            <div class="lab-topline"><span><i></i> EE / ENGINEERING LAB</span><span>06 CAMADAS <b>·</b> 25 TECNOLOGIAS</span></div>
+            <div class="lab-tabs" role="tablist" aria-label="Camadas de tecnologia">
+              <button type="button" role="tab" id="lab-tab-0" data-domain="0" aria-controls="lab-panel" aria-selected="true"><small>01</small><span>Interfaces<strong>Vue.js · React</strong></span></button>
+              <button type="button" role="tab" id="lab-tab-1" data-domain="1" aria-controls="lab-panel" aria-selected="false" tabindex="-1"><small>02</small><span>Backend<strong>PHP · Laravel</strong></span></button>
+              <button type="button" role="tab" id="lab-tab-2" data-domain="2" aria-controls="lab-panel" aria-selected="false" tabindex="-1"><small>03</small><span>Dados<strong>PostgreSQL · MySQL</strong></span></button>
+              <button type="button" role="tab" id="lab-tab-3" data-domain="3" aria-controls="lab-panel" aria-selected="false" tabindex="-1"><small>04</small><span>Integrações<strong>REST · GraphQL</strong></span></button>
+              <button type="button" role="tab" id="lab-tab-4" data-domain="4" aria-controls="lab-panel" aria-selected="false" tabindex="-1"><small>05</small><span>Design &amp; motion<strong>GSAP · Three.js</strong></span></button>
+              <button type="button" role="tab" id="lab-tab-5" data-domain="5" aria-controls="lab-panel" aria-selected="false" tabindex="-1"><small>06</small><span>Infra &amp; observabilidade<strong>Docker · AWS</strong></span></button>
+            </div>
+            <div class="lab-workspace">
+              <div class="lab-stage">
+                <div class="lab-scene-meta"><span data-lab-status>Mapa interativo</span><span data-lab-caption>UI / Interfaces</span></div>
+                <div class="lab-visual">
+                  <div class="lab-blueprint" aria-label="Mapa das camadas de tecnologia">
+                    <svg viewBox="0 0 640 500" aria-hidden="true"><path d="M320 250 150 125M320 250 320 85M320 250 490 125M320 250 490 375M320 250 320 415M320 250 150 375"/><rect x="255" y="185" width="130" height="130" rx="22"/><text x="320" y="263" text-anchor="middle">&lt;/&gt;</text></svg>
+                    <button type="button" data-map-domain="0" aria-pressed="true">UI</button><button type="button" data-map-domain="1" aria-pressed="false">API</button><button type="button" data-map-domain="2" aria-pressed="false">SQL</button><button type="button" data-map-domain="3" aria-pressed="false">SYNC</button><button type="button" data-map-domain="4" aria-pressed="false">FX</button><button type="button" data-map-domain="5" aria-pressed="false">OPS</button>
+                  </div>
+                  <canvas class="lab-canvas" aria-label="Instalação 3D com seis módulos conectados. Explore as camadas pelos botões acima."></canvas>
+                </div>
+                <div class="lab-scene-bottom"><span>Uma ideia. Todas as conexões.</span><div><button type="button" data-lab-motion aria-pressed="false">Pausar movimento</button><button type="button" data-lab-reset aria-label="Restaurar ângulo da instalação 3D">↺</button></div></div>
+              </div>
+              <div class="lab-panel" id="lab-panel" role="tabpanel" tabindex="0" aria-labelledby="lab-tab-0" data-lab-panel>
+                <div class="lab-panel-content">
+                  <span class="lab-panel-index"><span data-lab-number>01</span><span> / 06</span></span>
+                  <h3>A experiência começa aqui.</h3>
+                  <p class="lab-description" data-lab-description>Interfaces responsivas, componentes e páginas que dão forma ao produto — do primeiro contato às tarefas do dia a dia.</p>
+                  <div class="lab-technologies"><span class="lab-caption">FERRAMENTAS DESTA CAMADA</span><div class="lab-chips" data-lab-chips></div></div>
+                  <div class="lab-role"><i></i><p data-lab-role>A camada que as pessoas usam.</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="lab-bottomline"><span>TECNOLOGIA COM INTENÇÃO.</span><a href="#work">Veja isso nos meus projetos <span>↗</span></a></div>
           </div>
-          <div class="tree-instructions"><span>Arraste para girar · Aproxime com dois dedos ou a roda do mouse</span><span>Selecione um nó para explorar ↗</span></div>
-          <details class="tree-directory"><summary>Explorar tecnologias pela lista</summary><div class="tree-directory-buttons"></div></details>
-          <noscript><p class="tree-noscript">Ative o JavaScript para explorar os nós interativos. Tecnologias: MySQL, SQL, PostgreSQL, GraphQL, REST, Docker, Git, API, PHP, Laravel, JavaScript, Vue.js, React, Tailwind CSS, Bootstrap, GSAP, Three.js, Grafana, Hubs, ERPs, Figma, AWS, WordPress, Marketplaces, NF-e / SEFAZ.</p></noscript>
+          <noscript><p class="lab-noscript">Tecnologias: JavaScript, Vue.js, React, Tailwind CSS, Bootstrap, WordPress, PHP, Laravel, API, REST, GraphQL, SQL, MySQL, PostgreSQL, Marketplaces, Hubs, ERPs, NF-e / SEFAZ, Three.js, GSAP, Figma, Docker, Git, AWS e Grafana.</p></noscript>
         </div>
       </section>
     </section>

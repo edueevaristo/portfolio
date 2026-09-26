@@ -1,5 +1,5 @@
 import Lenis from 'lenis';
-import { initKnowledgeTree } from './knowledge-tree/index.js';
+import { initTechnologyLab } from './technology-lab/index.js';
 import 'lenis/dist/lenis.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -204,7 +204,7 @@ function initHeader() {
         morphed = nextMorph;
         gsap.to('.brand-shape', { morphSVG: morphed ? '#brand-shape-alt' : 'M5 5H37V13H14V18H33V25H14V29H37V37H5Z', duration: 0.65, ease: 'premium' });
       }
-      // Keep navigation reachable while inspecting long sections and the 3D tree.
+      // Keep navigation reachable while inspecting long sections and the lab.
       gsap.set(header, { yPercent: 0 });
     },
   });
@@ -450,7 +450,7 @@ function initPageTransitions() {
 }
 
 async function bootstrap() {
-  initKnowledgeTree({ reduceMotion, lowPowerDevice });
+  initTechnologyLab({ reduceMotion, lowPowerDevice });
   initSmoothScroll();
   initMenu();
   initCursor();

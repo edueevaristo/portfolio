@@ -106,7 +106,7 @@ section[id] {
 .about-context p + p {
   margin-top: 18px;
 }
-.about-tree-link {
+.about-tech-link {
   display: inline-flex;
   gap: 24px;
   margin-top: 25px;
@@ -115,7 +115,7 @@ section[id] {
   color: var(--signal);
   font-size: 14px;
 }
-.about-tree-link:hover {
+.about-tech-link:hover {
   border-color: var(--signal);
 }
 .manifesto .principles {
