@@ -1,5 +1,6 @@
 import Lenis from 'lenis';
 import { initTechnologyLab } from './technology-lab/index.js';
+import { initHeroParticles } from './hero-particles.js';
 import 'lenis/dist/lenis.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -451,6 +452,7 @@ function initPageTransitions() {
 
 async function bootstrap() {
   initTechnologyLab({ reduceMotion, lowPowerDevice });
+  initHeroParticles({ reduced: reduceMotion, lowPower: lowPowerDevice });
   initSmoothScroll();
   initMenu();
   initCursor();

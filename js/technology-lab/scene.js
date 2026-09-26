@@ -50,11 +50,11 @@ export function createLabScene({
   controls.maxAzimuthAngle = 1.5;
   controls.enabled = !compact;
   if (compact) canvas.style.touchAction = "pan-y";
-  scene.add(new T.HemisphereLight(0xd4f1e3, 0x030504, 1.8));
-  const key = new T.DirectionalLight(0xf2fff8, 4);
+  scene.add(new T.HemisphereLight(0xdce6ff, 0x030718, 1.8));
+  const key = new T.DirectionalLight(0xf2f6ff, 4);
   key.position.set(-4, 8, 5);
   scene.add(key);
-  const rim = new T.DirectionalLight(0x9dff6a, 3);
+  const rim = new T.DirectionalLight(0x8cadff, 3);
   rim.position.set(3, 4, -4);
   scene.add(rim);
   const model = buildLab();
@@ -88,7 +88,7 @@ export function createLabScene({
       vertexShader:
         "varying float vT; void main(){vT=uv.x;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}",
       fragmentShader:
-        "varying float vT;uniform float uTime,uActive,uPhase;void main(){float p=pow(max(0.,sin(vT*17.-uTime*2.+uPhase)),14.);vec3 c=mix(vec3(.07,.12,.09),vec3(.38,1.,.13),uActive);gl_FragColor=vec4(c*(.6+p*(.5+uActive*2.)),.75);}",
+        "varying float vT;uniform float uTime,uActive,uPhase;void main(){float p=pow(max(0.,sin(vT*17.-uTime*2.+uPhase)),14.);vec3 c=mix(vec3(.06,.1,.2),vec3(.34,.56,1.),uActive);gl_FragColor=vec4(c*(.6+p*(.5+uActive*2.)),.75);}",
       toneMapped: false,
     });
     const mesh = new T.Mesh(
@@ -135,7 +135,7 @@ export function createLabScene({
         duration: duration ? 0.6 : 0,
         overwrite: true,
       });
-      module.edge.color.set(i === index ? 0x9dff6a : 0x33463b);
+      module.edge.color.set(i === index ? 0x8cadff : 0x30436a);
       tween(paths[i].uniforms.uActive, {
         value: i === index ? 1 : 0,
         duration: duration ? 0.6 : 0,

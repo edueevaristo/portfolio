@@ -7,28 +7,28 @@ import { domains } from "./data.js";
 export function buildLab() {
   const group = new T.Group();
   const graphite = new T.MeshStandardMaterial({
-    color: 0x171c1c,
+    color: 0x151c2d,
     metalness: 0.8,
     roughness: 0.32,
   });
   const ceramic = new T.MeshStandardMaterial({
-    color: 0x07100b,
+    color: 0x081128,
     metalness: 0.45,
     roughness: 0.32,
   });
   const aluminum = new T.MeshStandardMaterial({
-    color: 0x76877f,
+    color: 0x788aac,
     metalness: 0.92,
     roughness: 0.25,
   });
   const light = new T.MeshStandardMaterial({
-    color: 0x9dff6a,
-    emissive: 0x74ff39,
+    color: 0x8cadff,
+    emissive: 0x557dff,
     emissiveIntensity: 1.3,
     roughness: 0.3,
   });
   const glass = new T.MeshPhysicalMaterial({
-    color: 0x6a9b7b,
+    color: 0x698dc2,
     metalness: 0.1,
     roughness: 0.13,
     transparent: true,
@@ -66,7 +66,7 @@ export function buildLab() {
   box(group, [7.85, 0.18, 7.65], [0, -0.62, 0], graphite, 0.16);
   box(group, [7.45, 0.09, 7.25], [0, -0.48, 0], ceramic, 0.08);
   const etched = new T.LineBasicMaterial({
-    color: 0x20332b,
+    color: 0x26395f,
     transparent: true,
     opacity: 0.5,
   });
@@ -128,7 +128,7 @@ export function buildLab() {
   const symbols = new T.Group();
   symbols.position.y = 0.845;
   core.add(symbols);
-  const markMaterial = new T.LineBasicMaterial({ color: 0xcaffb3 });
+  const markMaterial = new T.LineBasicMaterial({ color: 0xd7e4ff });
   for (const direction of [-1, 1])
     symbols.add(
       line(
@@ -158,16 +158,16 @@ export function buildLab() {
     labelCanvas.width = 512;
     labelCanvas.height = 128;
     const labelContext = labelCanvas.getContext("2d");
-    labelContext.fillStyle = "#08110b";
+    labelContext.fillStyle = "#0a1430";
     labelContext.beginPath();
     labelContext.roundRect(3, 3, 506, 122, 16);
     labelContext.fill();
-    labelContext.strokeStyle = "#597e54";
+    labelContext.strokeStyle = "#6588d6";
     labelContext.lineWidth = 3;
     labelContext.stroke();
     labelContext.textBaseline = "middle";
     labelContext.textAlign = "center";
-    labelContext.fillStyle = "#d7fac4";
+    labelContext.fillStyle = "#e3ebff";
     labelContext.font = "600 48px monospace";
     labelContext.fillText(domain.highlight, 256, 67, 468);
     const labelTexture = new T.CanvasTexture(labelCanvas);
@@ -183,7 +183,7 @@ export function buildLab() {
     }
     const edge = light.clone();
     edge.emissiveIntensity = index === 0 ? 1.8 : 0.05;
-    edge.color.set(index === 0 ? 0x9dff6a : 0x33463b);
+    edge.color.set(index === 0 ? 0x8cadff : 0x30436a);
     box(module, [1.37, 0.12, 1.17], [0, -0.27, 0], edge);
     box(module, [1.32, 0.18, 1.12], [0, -0.16, 0], graphite);
     box(module, [1.15, 0.035, 0.95], [0, -0.048, 0], ceramic);
@@ -259,7 +259,7 @@ export function buildLab() {
             [0, 0.055, 0],
             [Math.cos(a) * 0.43, 0.055, Math.sin(a) * 0.36],
           ],
-          new T.LineBasicMaterial({ color: 0x9dff6a }),
+          new T.LineBasicMaterial({ color: 0x8cadff }),
         );
         module.add(link);
       }
