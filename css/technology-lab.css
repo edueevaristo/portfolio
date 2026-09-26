@@ -34,8 +34,10 @@
 
 /* Editorial frame + a precise, restrained engineering diorama. */
 .technology-lab {
+  --signal: #8cadff;
+  --line: rgba(153, 178, 241, 0.2);
   padding: 100px 0 110px;
-  background: #000;
+  background: #030718;
 }
 .lab-heading {
   display: flex;
@@ -63,9 +65,9 @@
   padding-bottom: 4px;
 }
 .lab-shell {
-  --lab-line: rgba(255, 255, 255, 0.11);
+  --lab-line: rgba(153, 178, 241, 0.2);
   border: 1px solid var(--lab-line);
-  background: #080b0a;
+  background: #090f25;
   border-radius: 22px;
   overflow: hidden;
 }
@@ -82,7 +84,7 @@
 }
 .lab-topline {
   border-bottom: 1px solid var(--lab-line);
-  color: #d9e1db;
+  color: #dfe7ff;
 }
 .lab-topline > span:first-child {
   display: flex;
@@ -94,10 +96,10 @@
   height: 5px;
   border-radius: 50%;
   background: var(--signal);
-  box-shadow: 0 0 10px #9dff6a60;
+  box-shadow: 0 0 10px #8cadff60;
 }
 .lab-topline > span:last-child {
-  color: #747f78;
+  color: #889bc4;
 }
 .lab-topline b {
   margin: 0 10px;
@@ -115,7 +117,7 @@
   gap: 12px;
   text-align: left;
   padding: 21px 18px;
-  color: #909b95;
+  color: #92a2c5;
   font-size: 12px;
   line-height: 1.4;
   background: transparent;
@@ -138,11 +140,11 @@
   gap: 4px;
 }
 .lab-tabs strong {
-  color: #aab9ac;
+  color: #aabbe4;
   font: 10px/1.2 monospace;
   white-space: nowrap;
 }
-.lab-tabs button[aria-selected="true"] strong { color: #d5f9bf; }
+.lab-tabs button[aria-selected="true"] strong { color: #e1e9ff; }
 .lab-tabs button::after {
   content: "";
   position: absolute;
@@ -160,7 +162,7 @@
 }
 .lab-tabs button[aria-selected="true"] {
   color: var(--signal);
-  background: linear-gradient(0deg, #9dff6a09, transparent);
+  background: linear-gradient(0deg, #8cadff15, transparent);
 }
 .lab-tabs button[aria-selected="true"]::after {
   transform: scaleX(1);
@@ -174,7 +176,7 @@
   display: flex;
   flex-direction: column;
   background:
-    radial-gradient(ellipse at 48% 43%, #16302430, transparent 64%), #050807;
+    radial-gradient(ellipse at 48% 43%, #163a8f45, transparent 64%), #050a1c;
 }
 .lab-scene-meta {
   display: flex;
@@ -183,10 +185,10 @@
   padding: 26px 28px 0;
   font: 9px monospace;
   letter-spacing: 0.06em;
-  color: #68796d;
+  color: #889bc4;
 }
 .lab-scene-meta span:last-child {
-  color: #b2c2b6;
+  color: #bdcbed;
 }
 .lab-visual {
   position: relative;
@@ -226,25 +228,25 @@
   height: 100%;
 }
 .lab-blueprint path {
-  stroke: #406737;
+  stroke: #5274bd;
   stroke-width: 1;
   fill: none;
 }
 .lab-blueprint rect {
-  stroke: #9dff6a;
+  stroke: #8cadff;
   stroke-width: 1;
-  fill: #101c12;
+  fill: #0c193a;
 }
 .lab-blueprint text {
-  fill: #9dff6a;
+  fill: #8cadff;
   font: 32px monospace;
 }
 .lab-blueprint button {
   position: absolute;
   padding: 14px 18px;
-  background: #0a110d;
-  border: 1px solid #30472e;
-  color: #8a9c8e;
+  background: #0a1536;
+  border: 1px solid #304b84;
+  color: #a6b9e4;
   font: 12px monospace;
   border-radius: 10px;
   transform: translate(-50%, -50%);
@@ -252,7 +254,7 @@
 .lab-blueprint button[aria-pressed="true"] {
   color: var(--signal);
   border-color: var(--signal);
-  box-shadow: 0 0 35px #9dff6a12;
+  box-shadow: 0 0 35px #8cadff26;
 }
 .lab-blueprint button:nth-of-type(1) {
   left: 23.5%;
@@ -284,7 +286,7 @@
   justify-content: space-between;
   gap: 12px;
   padding: 10px 28px 24px;
-  color: #77897e;
+  color: #889bc4;
   font-size: 11px;
 }
 .lab-scene-bottom > div {
@@ -296,11 +298,11 @@
   border: 1px solid #ffffff15;
   padding: 8px 10px;
   border-radius: 6px;
-  color: #9ca99f;
+  color: #abbce4;
   font-size: 10px;
 }
 .lab-scene-bottom button:hover {
-  border-color: #9dff6a70;
+  border-color: #8cadff70;
   color: var(--signal);
 }
 .lab-scene-bottom button:disabled {
@@ -310,7 +312,7 @@
 .lab-panel {
   padding: 38px clamp(26px, 3vw, 48px);
   border-left: 1px solid var(--lab-line);
-  background: linear-gradient(145deg, #101713, #090d0b 75%);
+  background: linear-gradient(145deg, #101b3c, #080e23 75%);
 }
 .lab-panel-content {
   display: flex;
@@ -320,7 +322,7 @@
 .lab-panel-index {
   font: 11px monospace;
   letter-spacing: 0.04em;
-  color: #516157;
+  color: #889bc4;
   margin-bottom: 34px;
 }
 .lab-panel-index span:first-child {
@@ -334,7 +336,7 @@
   max-width: 12ch;
 }
 .lab-description {
-  color: #a6b1aa;
+  color: #b2bfdc;
   font-size: 15px;
   line-height: 1.7;
   margin-top: 22px;
@@ -346,7 +348,7 @@
 .lab-caption {
   font: 9px monospace;
   letter-spacing: 0.09em;
-  color: #6b7e70;
+  color: #889bc4;
 }
 .lab-chips {
   display: flex;
@@ -358,8 +360,8 @@
   font-size: 12px;
   line-height: 1.4;
   padding: 9px 12px;
-  background: #ffffff04;
-  border: 1px solid #ffffff14;
+  background: #8cadff0a;
+  border: 1px solid #8cadff40;
   border-radius: 7px;
   transition:
     border-color 0.2s,
@@ -374,7 +376,7 @@
   border-top: 1px solid var(--lab-line);
   margin-top: auto;
   font-size: 12px;
-  color: #819489;
+  color: #b2bfdc;
 }
 .lab-role i {
   width: 5px;
@@ -386,9 +388,9 @@
 .lab-note {
   margin-bottom: 24px;
   padding: 18px;
-  border: 1px solid #9dff6a40;
+  border: 1px solid #8cadff40;
   border-radius: 10px;
-  background: #9dff6a06;
+  background: #8cadff0a;
 }
 .lab-note[hidden] {
   display: none;
@@ -397,14 +399,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #8fa086;
+  color: #aebde2;
   font: 9px monospace;
   letter-spacing: 0.05em;
 }
 .lab-note button {
   padding: 0 4px;
   background: none;
-  color: #b6cbb8;
+  color: #c0cceb;
   font-size: 24px;
   line-height: 1;
 }
@@ -415,16 +417,16 @@
 }
 .lab-note p {
   font: 11px/1.6 monospace;
-  color: #a9bd9e;
+  color: #aebde2;
   overflow-wrap: anywhere;
 }
 .lab-bottomline {
   border-top: 1px solid var(--lab-line);
   font-size: 9px;
-  color: #526359;
+  color: #889bc4;
 }
 .lab-bottomline a {
-  color: #c5d1c8;
+  color: #d8e2ff;
   font-family: var(--font);
   font-size: 12px;
   letter-spacing: 0;
@@ -438,7 +440,7 @@
 }
 .lab-noscript {
   margin-top: 20px;
-  color: #a6b1aa;
+  color: #b2bfdc;
   line-height: 1.6;
 }
 @media (max-width: 1100px) {

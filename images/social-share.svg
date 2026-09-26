@@ -2,18 +2,18 @@
   <title id="title">Eduardo Evaristo — Desenvolvedor Full Stack Sênior</title>
   <desc id="desc">Portfólio de Eduardo Evaristo, desenvolvedor full stack e creative developer.</desc>
   <defs>
-    <linearGradient id="signal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#bbd0ff"/><stop offset="1" stop-color="#527dff"/></linearGradient>
-    <radialGradient id="glow" cx="85%" cy="20%" r="80%"><stop stop-color="#163b9f" stop-opacity=".9"/><stop offset="1" stop-color="#030718" stop-opacity="0"/></radialGradient>
+    <linearGradient id="signal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9dff6a"/><stop offset="1" stop-color="#79e546"/></linearGradient>
+    <radialGradient id="glow" cx="85%" cy="20%" r="80%"><stop stop-color="#1c3813" stop-opacity=".9"/><stop offset="1" stop-color="#000000" stop-opacity="0"/></radialGradient>
   </defs>
-  <rect width="1200" height="630" fill="#030718"/>
+  <rect width="1200" height="630" fill="#000000"/>
   <rect width="1200" height="630" fill="url(#glow)"/>
-  <path d="M0 530H1200" stroke="#8cadff" stroke-opacity=".25"/>
+  <path d="M0 530H1200" stroke="#9dff6a" stroke-opacity=".25"/>
   <path d="M84 86h42v10H94v7h25v9H94v8h32v10H84z" fill="url(#signal)"/>
-  <text x="84" y="260" fill="#8cadff" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" letter-spacing="4">PORTFÓLIO / 2026</text>
-  <text x="84" y="356" fill="#ffffff" font-family="Arial,Helvetica,sans-serif" font-size="72" font-weight="500" letter-spacing="1">Eduardo Evaristo</text>
-  <text x="88" y="412" fill="#becbea" font-family="Arial,Helvetica,sans-serif" font-size="28">Full Stack Sênior  ×  Creative Developer</text>
-  <text x="84" y="570" fill="#becbea" font-family="Arial,Helvetica,sans-serif" font-size="18" letter-spacing="2">SISTEMAS DIGITAIS · PRODUTOS · EXPERIÊNCIAS WEB</text>
-  <circle cx="1015" cy="330" r="125" fill="none" stroke="#8cadff" stroke-opacity=".5"/>
-  <circle cx="1015" cy="330" r="92" fill="none" stroke="#8cadff" stroke-opacity=".2"/>
+  <text x="84" y="260" fill="#9dff6a" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" letter-spacing="4">PORTFÓLIO / 2026</text>
+  <text x="84" y="356" fill="#ffffff" font-family="Arial,Helvetica,sans-serif" font-size="72" font-weight="700" letter-spacing="-3">Eduardo Evaristo</text>
+  <text x="88" y="412" fill="#cccccc" font-family="Arial,Helvetica,sans-serif" font-size="28">Full Stack Sênior  ×  Creative Developer</text>
+  <text x="84" y="570" fill="#cccccc" font-family="Arial,Helvetica,sans-serif" font-size="18" letter-spacing="2">SISTEMAS DIGITAIS · PRODUTOS · EXPERIÊNCIAS WEB</text>
+  <circle cx="1015" cy="330" r="125" fill="none" stroke="#9dff6a" stroke-opacity=".5"/>
+  <circle cx="1015" cy="330" r="92" fill="none" stroke="#9dff6a" stroke-opacity=".2"/>
   <path d="M1015 190l125 63v154l-125 63-125-63V253zM967 276v110h96v-25h-55v-22h47v-25h-47v-20h55v-18z" fill="url(#signal)"/>
 </svg>
