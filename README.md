@@ -1,4 +1,4 @@
-# Eduardo Evaristo — portfólio
+# Eduardo Evaristo | Portfólio
 
 Portfólio pessoal com apresentação, projetos, habilidades, tecnologias e contato. A interface mantém a paleta preta, branca e verde `#9dff6a`; as fotos e os projetos preservam suas cores originais.
 
