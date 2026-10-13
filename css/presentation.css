@@ -118,6 +118,7 @@ section[id] {
 .about-tools {
   padding-top: 1px;
   border-top: 1px solid var(--line);
+  scroll-margin-top: calc(var(--header-h) + 20px);
 }
 .about-tools .about-context-label {
   margin-top: 18px;
@@ -140,18 +141,6 @@ section[id] {
 .about-tools-grid img:hover {
   transform: translateY(-5px) scale(1.06);
   box-shadow: 0 12px 30px rgba(0, 0, 0, .38);
-}
-.about-tree-link {
-  display: inline-flex;
-  gap: 24px;
-  margin-top: 25px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--line);
-  color: var(--signal);
-  font-size: 14px;
-}
-.about-tree-link:hover {
-  border-color: var(--signal);
 }
 .manifesto .principles {
   display: grid;
