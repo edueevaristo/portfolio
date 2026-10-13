@@ -37,7 +37,6 @@ body {
 }
 body.menu-open { overflow: hidden; }
 body.menu-open .site-header { color:var(--ink); background:transparent; }
-body.menu-open .brand svg { fill:var(--ink); }
 ::selection { background: var(--signal); color: var(--ink); }
 a { color: inherit; text-decoration: none; }
 button, input, select, textarea { color: inherit; font: inherit; }
@@ -98,8 +97,7 @@ h1, h2, h3, p { margin: 0; }
 .site-header.is-scrolled { backdrop-filter: blur(18px); background: rgba(0,0,0,.72); }
 .site-header.is-scrolled::after { transform: scaleX(1); transition: transform .8s var(--ease-premium); }
 .brand { justify-self: start; display: inline-flex; align-items: center; gap: 11px; font-size: 13px; font-weight: 700; letter-spacing: .02em; }
-.brand svg { width: 28px; height: 28px; fill: var(--signal); overflow: visible; }
-.shape-target { visibility: hidden; }
+.brand img { display:block; width:58px; height:auto; }
 .header-status { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
 .header-status i { width: 7px; height: 7px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 5px rgba(157,255,106,.1); animation: status 2s ease-in-out infinite; }
 @keyframes status { 50% { opacity:.4; transform:scale(.75); } }
@@ -299,7 +297,7 @@ h1, h2, h3, p { margin: 0; }
 .footer-grid { display:grid; grid-template-columns:2fr repeat(3,1fr); gap:4vw; padding:90px 0 110px; }
 .footer-grid > div { display:flex; flex-direction:column; align-items:flex-start; gap:10px; }
 .footer-grid > div:first-child { justify-content:space-between; }
-.footer-brand { color:var(--signal); font-size:clamp(58px,7vw,112px); font-weight:750; letter-spacing:-.07em; line-height:.8; }
+.footer-brand img { display:block; width:clamp(148px,17vw,220px); height:auto; }
 .footer-grid p { color:#aaaaaa; font-size:14px; }
 .footer-grid span { margin-bottom:18px; color:#aaaaaa; font-size:10px; text-transform:uppercase; letter-spacing:.13em; }
 .footer-grid a:not(.footer-brand) { color:var(--paper-dim); font-size:14px; }
@@ -335,7 +333,7 @@ h1, h2, h3, p { margin: 0; }
   :root { --shell:calc(100vw - 36px); }
   .site-header { padding-inline:18px; }
   .site-header::after { inset-inline:18px; }
-  .brand svg { width:25px; }
+  .brand img { width:52px; }
   .menu-toggle { width:76px; }
   .menu-panel { padding:calc(var(--header-h) + 42px) 20px 28px; }
   .menu-panel nav a { grid-template-columns:40px 1fr; }

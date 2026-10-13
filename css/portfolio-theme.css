@@ -80,7 +80,6 @@
 .submit-button i { color: var(--ink); }
 .submit-button:hover { background: var(--signal-dark); }
 body.menu-open .site-header { color: var(--paper); background: var(--ink); }
-body.menu-open .brand svg { fill: var(--signal); }
 .menu-panel nav a:hover, .menu-footer a:hover, .contact-email:hover, .timeline a:hover { color: var(--signal); }
 .portrait-frame picture, .project-media, .project-card picture { background: var(--ink); }
 .project-media-giovanna { background: var(--ink); }

@@ -185,24 +185,11 @@ function initCursor() {
 
 function initHeader() {
   const header = document.querySelector('[data-header]');
-  const brand = document.querySelector('.brand');
-  let morphed = false;
-
-  brand.addEventListener('pointerenter', () => gsap.to('.brand-shape', { morphSVG: '#brand-shape-alt', duration: 0.55, ease: 'premium' }));
-  brand.addEventListener('pointerleave', () => {
-    if (!morphed) gsap.to('.brand-shape', { morphSVG: 'M5 5H37V13H14V18H33V25H14V29H37V37H5Z', duration: 0.55, ease: 'premium' });
-  });
-
   ScrollTrigger.create({
     start: 80,
     end: 'max',
     onUpdate: (self) => {
       header.classList.toggle('is-scrolled', self.scroll() > 80);
-      const nextMorph = self.scroll() > window.innerHeight * 0.75;
-      if (nextMorph !== morphed) {
-        morphed = nextMorph;
-        gsap.to('.brand-shape', { morphSVG: morphed ? '#brand-shape-alt' : 'M5 5H37V13H14V18H33V25H14V29H37V37H5Z', duration: 0.65, ease: 'premium' });
-      }
       // Keep navigation reachable while inspecting long sections.
       gsap.set(header, { yPercent: 0 });
     },
