@@ -472,6 +472,8 @@ h1, h2, h3, p { margin: 0; }
   background: #000000;
 }
 
+.project-media-maxwell { aspect-ratio: 1600 / 824; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior:smooth; }
   *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; transition-duration:.01ms !important; }
