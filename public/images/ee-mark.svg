@@ -1,4 +1,3 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="72 98 230 92" role="img" aria-label="EE barra">
-  <rect x="72" y="98" width="230" height="92" fill="#9dff6a"/>
-  <path d="M85 111h62v7H92v25h45v7H92v24h59v7H85zM158 111h63v7h-56v25h45v7h-45v24h59v7h-66zM237 116l6-4 46 63-6 4z" fill="#000"/>
+  <path d="M85 111h62v7H92v25h45v7H92v24h59v7H85zM158 111h63v7h-56v25h45v7h-45v24h59v7h-66zM237 116l6-4 46 63-6 4z" fill="#9dff6a"/>
 </svg>
