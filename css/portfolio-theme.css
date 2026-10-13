@@ -15,7 +15,6 @@
 .cursor { mix-blend-mode: normal; opacity: 0; }
 .cursor.is-active { opacity: 1; }
 .site-header.is-scrolled { background: rgb(0 0 0 / 88%); }
-.header-status i { box-shadow: 0 0 12px rgb(157 255 106 / 40%); }
 .hero { min-height: 760px; height: 100svh; max-height: 1200px; }
 .hero::before { display: none; }
 .hero-copy {
