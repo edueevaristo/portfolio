@@ -19,7 +19,7 @@
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresDefault "access plus 1 hour"
-    ExpiresByType text/html "access plus 5 minutes"
+    ExpiresByType text/html "access plus 0 seconds"
     ExpiresByType text/css "access plus 1 year"
     ExpiresByType application/javascript "access plus 1 year"
     ExpiresByType font/woff2 "access plus 1 year"
@@ -34,7 +34,7 @@
         Header set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
     <FilesMatch "\.(?:html)$">
-        Header set Cache-Control "public, max-age=300, must-revalidate"
+        Header set Cache-Control "no-store, max-age=0, must-revalidate"
     </FilesMatch>
 </IfModule>
 
