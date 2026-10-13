@@ -2,6 +2,71 @@
 section[id] {
   scroll-margin-top: calc(var(--header-h) + 20px);
 }
+.hero {
+  isolation: isolate;
+}
+.hero-portrait {
+  position: absolute;
+  z-index: 0;
+  inset: 0 0 0 auto;
+  width: 58%;
+  height: 100%;
+  overflow: hidden;
+}
+.hero-portrait picture,
+.hero-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.hero-portrait img {
+  object-fit: cover;
+  object-position: center 38%;
+}
+.hero-portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #000 0%, rgb(0 0 0 / 82%) 22%, rgb(0 0 0 / 28%) 65%, rgb(0 0 0 / 16%) 100%), linear-gradient(0deg, rgb(0 0 0 / 72%), transparent 32%);
+  pointer-events: none;
+}
+.portrait-caption {
+  position: absolute;
+  z-index: 1;
+  right: clamp(18px, 3.7vw, 72px);
+  bottom: 24px;
+  display: flex;
+  gap: 18px;
+  color: var(--paper);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+@media (max-width: 980px) {
+  .hero-portrait {
+    position: relative;
+    inset: auto;
+    order: 1;
+    width: 100%;
+    height: clamp(360px, 68vw, 560px);
+    flex: none;
+  }
+  .hero-portrait::after {
+    background: linear-gradient(180deg, #000 0%, transparent 22%, transparent 72%, rgb(0 0 0 / 65%) 100%);
+  }
+}
+@media (max-width: 680px) {
+  .hero-portrait {
+    height: clamp(340px, 110vw, 520px);
+  }
+  .portrait-caption {
+    left: 18px;
+    right: 18px;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 8px;
+  }
+}
 .manifesto {
   padding-block: clamp(72px, 7vw, 112px);
 }
